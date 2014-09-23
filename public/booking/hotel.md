@@ -20,10 +20,12 @@
   **blocks** | string | дата выезда в формате "DD-MM-YYYY" (по ISO-8601)
 
 
-тут список
-###Кратко
+<table>
+    <tr>
+        <td><font color="orange">Word up</span></td>
+    </tr>
+</table>
 
-###Примечание
 
 Черновое описание
 
