@@ -1,4 +1,5 @@
-api-docs
+Hotels24 API Documentation (ru)
 ========
 
-Api Related Documentation
+
+[Публичные методы] (public/cnts.md)
