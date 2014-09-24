@@ -157,6 +157,7 @@ Example:
 }
 ```
 
+<a name="state_statuses"></a>
 #####Response Parameters
 
 Name | Type | Description | Notes
@@ -167,7 +168,8 @@ Name | Type | Description | Notes
 <a name ="f_status_body"></a>`status_body` | object | дополнительная информация о состоянии процесса бронирования
 `request_id` | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
-######Response State Statuses<a name="state_statuses"></a>
+<a name="state_statuses"></a>
+######Response State Statuses
 
 State | Description
  --- | ---
@@ -177,14 +179,15 @@ State | Description
 `"rejected"` | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
 `"failure"` | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
 
-####Booking States<a name="states"></a>
+<a name="states"></a>
+####Booking States
 Name | Description
  --- | ---
 <a name="state.preConditions"></a>`"preConditions"` | этап без идентификатора брони. Может быть использован параметром nextState только для проверки доступности брони по переданным данным.
 <a name="state.postConditions"></a>`"postConditions"` | демонстрация сложившихся условий бронирования
 <a name="state.preRequisites"></a>`"preRequisites"` | ожидание ввода реквизитов
 <a name="state.postRequisites"></a>`"postRequisites"` | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
- .... here must be payments |
+ `todo payments` | ...
 <a name="state.complete"></a>`"complete"` | бронирование завершено
 
 
