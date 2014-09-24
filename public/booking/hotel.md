@@ -39,7 +39,8 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 `date` | `date` | Строка даты дня. формат: `"yyyy-mm-dd"`
 `dateTime` | `dateTime` | Дата. Дата-время (RFC 3339) `"yyyy-mm-ddTHH:MM:ss"`
 `list` | `list`, `array` | список
- | `list[string]`, `[string]`, [[`Entity`](#entity)] | список состоящий из набора [`Entity`](#entity)
+ | `list[string]`, `[string]`, | список состоящий из типов указаных в `[...]` (здесь - строк)
+ | [[`Entity`](#entity)]` | список состоящий из набора [`Entity`](#entity)
 [`entity`](#entity) | [`SomeEntity`](#someEntity) | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
 ...
 
