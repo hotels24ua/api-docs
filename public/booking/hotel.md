@@ -1,12 +1,9 @@
 ```
 [POST] /booking/hotel
 ```
-it should looks [like](https://developers.google.com/discovery/v1/reference/apis/list) but MD does not support colors :(
+:arrow_right: Обсудить документацию, задать вопросы, добавить заявки на улучшения в сам метод бронирования можно [здесь](https://github.com/hotels24ua/api-docs/issues/1)
 
-- [x] basic sketch
-- [ ] draft done
-- [ ] draft approved
-- [ ] published
+
 
 #####Общее описание
  Метод для бронирования номеров в отеле.
