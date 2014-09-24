@@ -1,7 +1,7 @@
 ```
 [POST] /booking/hotel
 ```
-:arrow_right: Обсудить документацию, задать вопросы, добавить заявки на улучшения в сам метод бронирования можно [здесь](https://github.com/hotels24ua/api-docs/issues/1)
+:arrow_right: [Обсудить документацию, задать вопросы, добавить заявки на улучшения в сам метод бронирования можно здесь](https://github.com/hotels24ua/api-docs/issues/1)
 
 
 
