@@ -1,31 +1,95 @@
 ```
 [POST] /booking/hotel
 ```
+it should looks [like](https://developers.google.com/discovery/v1/reference/apis/list) but MD does not support colors :(
 
-[.](https://developers.google.com/discovery/v1/reference/apis/list)
+#####Общее описание
+ Метод для бронирования номеров в отеле.
+ Бронирование может быть произведено в один запрос (за исключением случаев, где должна производится онлайн оплата).
+ Бронирование состоит из нескольких этапов (см. [States](#States)).
+ Система может произвести остановку на каком-либо [этапе](#States) в следующих случаях:
 
+  * если не все необходимые данные присутствуют в запросе
+  * данные не валидны
+  * произошла непредвиденная ошибка
+  * клиентская сторона сама инициировала остановку на нужном [этапе](#States) под средством специального указателя [`next_state`](#next_state)
 
-[`code_text`](#nonInline)`.www`
+#####Специальные обозначения
+######Параметры
+Пример | Описание
+--- | ---
+`parameter` | обычный обязательный параметр
+`[optional_parameter]` | опциональный параметр заключен в кв.скобки (может присутствовать, а может и отсутствовать. Детали поведеня должны быть приложены в описании)
+`parameter.property` | `parameter` является объектом, а `property` его свойством
+`[optional_parameter].property` | опциональный параметр `optional_parameter`, но если присутствует, то обязательно должен иметь свойство `property`
+`[optional_parameter.property2]` | опциональный параметр `optional_parameter`, опционально может иметь свойство `property2`
+[`parameter_doc_ref`](#parameter_reference) | ссылка на параметр в документации
+[`parameter_doc_ref.`](#parameterRef)`property` | то же самое что и `parameter.property`, только на родительский параметр присутствует ссылка в документации
+`parameter[]` | параметр со списком значений (известны так же как `list`, `enum`, `Array`, etc)
+`parameter[].itemProperty` | параметр является списком объектов с обязательными свойствами `itemProperty`
+`parameter[].[itemProperty2]` | параметр является списком объектов с опциональными свойствами `itemProperty`
+
+######Типы данных
+Обозначение | Варианты использования | Описание
+--- | --- | ---
+`boolean` | `boolean`, `bool` | true, false, 1, 0 , "yes", "no"
+`string` | `string`, `str` |  Строка
+`integer` | `int`, `integer` | Число. Целое
+`object` | `object`, `obj`, `{}` | объект с какими-то свойствами
+`date` | `date` | Строка даты дня. формат: `"yyyy-mm-dd"`
+`dateTime` | `dateTime` | Дата. Дата-время (RFC 3339) `"yyyy-mm-ddTHH:MM:ss"`
+`list` | `list`, `array` | список
+ | `list[string]`, `[string]`, [[`Entity`](#entity)] | список состоящий из набора [`Entity`](#entity)
+[`entity`](#entity) | [`SomeEntity`](#someEntity) | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
+...
 
 #####Запрос принимает данные в форматах:
 
  * application/json - json encoded post body
  * application/x-www-form-urlencoded - url encoded
 
+#####Request Flow
+**[`optional_condition`]** - опциональное условие бронирования.
+Помечаются условия бронирования и другие параметры, которые могут быть проигнорированы в запросе если клиенту этот параметр не важен.
+Если параметр предоставлен в запросе, но он не совпадает с фактическим параметром в базе - запрос будет возвращен обратно со [статусом](#status) [`"rejected"`](#status_rejected).
+В обратном запросе [`"rejected"`](#status_rejected) будет указаны:
+ * несовпадения в поле [`status_body`](#status_body),
+ * стадия на которой была произведена остановка [статусом](#status).
+Этот функционал существует для того, чтобы клиентская сторона могла подтвердить изменения в условиях или произвести другие действия по корректировке запроса.
+Если же [опицональне условия](#optional_conditions) упущены система произведет автоматическое принятие параметров на основе существующих в базе.
+
 #####Request Parameters
+`[optional_parameter]` -
 
   Name | Type | Description | Notes
   --- | --- | --- | ---
-  **arrival_date** | string | дата заезда в формате "DD-MM-YYYY" (по ISO-8601)
-  **departure_date** | string | дата выезда в формате "DD-MM-YYYY" (по ISO-8601)
-  **blocks** | string | дата выезда в формате "DD-MM-YYYY" (по ISO-8601)
+  `arrival_date` | string | дата заезда в формате "DD-MM-YYYY" (по ISO-8601)
+  `departure_date` | string | дата выезда в формате "DD-MM-YYYY" (по ISO-8601)
+  `blocks` | list | список бронируемых объектов (комнат/тарифов)
+  `blocks[].tariff` | string |
+  `blocks[].[conditions]` | object | объект с условиями бронирования `cancellation` и `booking_method`
+  `blocks[].[conditions.cancellation]` |
+  `blocks[].[conditions.booking_method]` |
+  `blocks[].[recovery]` | object | предоплата, которая взымается за номер сразу при бронировании
+  `blocks[].[recovery].unit` | string | единица измерения поля `recovery.amount` (% - "percent" или дни - "day")
+  `blocks[].[recovery].amount` | integer | кол-во ед. предоплаты (1-9 - дни 10-100 - проценты)
+  `blocks[].[recovery].sum` | integer | общая сумма пердоплаты в денежном эквиваленте (указывается за весь период по конкретному блоку)
+  `blocks[].total_cost` | integer | стоимость проживания в блоке за весь период
+  `blocks[].quantity` | integer |  количество бронируемых блоков этого типа (тарифа)
+  `blocks[].[living]` | list | список проживающих (на каждый `quantity` или один на все. В случае, если проживающих не достаточно, будет выбран тот, который указан в поле [`requisites`](#requisites)
+  `blocks[].[living[]].first_name` | string |  имя проживающего в блоке
+  `blocks[].[living[].last_name]` | string | фамилия проживающего в блоке
+  `requisites` | object | объект реквизитов бронирующего клиента (обязателен для стадий после [`"preRequisites"`](#state.preRequisites))
+  `requisites.first_name` | string | имя бронирующего
+  `requisites.last_name` | string | фамилия бронирующего
+  `requisites.email` | string | email адресс бронирующего
+  `requisites.phone` | string | телефон бронирующего
+  [[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states))
+  [[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
+  [[`accepted`](#accepted)] | boolean | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
 
 
-<table>
-    <tr>
-        <td><font color="orange">Word up</span></td>
-    </tr>
-</table>
+
 
 
 Черновое описание
