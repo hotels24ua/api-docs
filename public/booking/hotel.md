@@ -3,6 +3,11 @@
 ```
 it should looks [like](https://developers.google.com/discovery/v1/reference/apis/list) but MD does not support colors :(
 
+- [x] basic sketch
+- [ ] draft done
+- [ ] draft approved
+- [ ] normal **formatting**, @mentions, #1234 refs
+
 #####Общее описание
  Метод для бронирования номеров в отеле.
  Бронирование может быть произведено в один запрос (за исключением случаев, где должна производится онлайн оплата).
