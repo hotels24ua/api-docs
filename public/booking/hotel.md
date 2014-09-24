@@ -91,7 +91,8 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 
 ####Response
 Результат запроса возвращается в формате `application/json`
-<div markdown="1" class="collapse" title="Response Body Example" collapse="true">
+
+Example:
 ```json
 {
     "ok" : 1,
@@ -149,7 +150,7 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
     "code" : 200
 }
 ```
-</div>
+
 #####Response Parameters
 Name | Type | Description | Notes
 --- | --- | --- | ---
