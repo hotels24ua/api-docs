@@ -6,7 +6,7 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 - [x] basic sketch
 - [ ] draft done
 - [ ] draft approved
-- [ ] normal **formatting**, @mentions, #1234 refs
+- [ ] published
 
 #####Общее описание
  Метод для бронирования номеров в отеле.
@@ -51,8 +51,8 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 
 ####Request
 Запрос принимает данные в форматах:
- `application/json` - json encoded post body
- `application/x-www-form-urlencoded` - url encoded
+`application/json` - json encoded post body
+`application/x-www-form-urlencoded` - url encoded
 
 #####Request Flow
 <a name="optional_conditions"></a>**[`optional_condition`]** - опциональное условие бронирования.
