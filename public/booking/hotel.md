@@ -36,21 +36,21 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 `string` | `string`, `str` |  Строка
 `integer` | `int`, `integer` | Число. Целое
 `object` | `object`, `obj`, `{}` | объект с какими-то свойствами
-`date` | `date` | Строка даты дня. формат: `"yyyy-mm-dd"`
+<a name="t_date"></a>`date` | `date` | Строка даты дня. формат: `"yyyy-mm-dd"`
 `dateTime` | `dateTime` | Дата. Дата-время (RFC 3339) `"yyyy-mm-ddTHH:MM:ss"`
 `list` | `list`, `array` | список
  | `list[string]`, `[string]`, | список состоящий из типов указаных в `[...]` (здесь - строк)
- | [[`Entity`](#entity)]` | список состоящий из набора [`Entity`](#entity)
+ | [[`Entity`](#entity)] | список состоящий из набора [`Entity`](#entity)
 [`entity`](#entity) | [`SomeEntity`](#someEntity) | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
 ...
 
-#####Запрос принимает данные в форматах:
-
- * application/json - json encoded post body
- * application/x-www-form-urlencoded - url encoded
+####Request
+Запрос принимает данные в форматах:
+ `application/json` - json encoded post body
+ `application/x-www-form-urlencoded` - url encoded
 
 #####Request Flow
-**[`optional_condition`]** - опциональное условие бронирования.
+<a name="optional_conditions"></a>**[`optional_condition`]** - опциональное условие бронирования.
 Помечаются условия бронирования и другие параметры, которые могут быть проигнорированы в запросе если клиенту этот параметр не важен.
 Если параметр предоставлен в запросе, но он не совпадает с фактическим параметром в базе - запрос будет возвращен обратно со [статусом](#status) [`"rejected"`](#status_rejected).
 В обратном запросе [`"rejected"`](#status_rejected) будет указаны:
@@ -60,17 +60,16 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 Если же [опицональне условия](#optional_conditions) упущены система произведет автоматическое принятие параметров на основе существующих в базе.
 
 #####Request Parameters
-`[optional_parameter]` -
 
   Name | Type | Description | Notes
   --- | --- | --- | ---
-  `arrival_date` | string | дата заезда в формате "DD-MM-YYYY" (по ISO-8601)
-  `departure_date` | string | дата выезда в формате "DD-MM-YYYY" (по ISO-8601)
+  `arrival_date` | [date](#t_date) | дата заезда
+  `departure_date` | [date](#t_date) | дата выезда
   `blocks` | list | список бронируемых объектов (комнат/тарифов)
   `blocks[].tariff` | string |
   `blocks[].[conditions]` | object | объект с условиями бронирования `cancellation` и `booking_method`
-  `blocks[].[conditions.cancellation]` |
-  `blocks[].[conditions.booking_method]` |
+  `blocks[].[conditions.cancellation]` | integer | кол-во дней перед днем заезда после которого отмена не возможна
+  `blocks[].[conditions.booking_method]` | integer |метод бронирования для данного блока (опионален. если присутствует - будет свалидирован с фактическим методом указаным в базе. используется только в случае если для клиента важно где и как платить)
   `blocks[].[recovery]` | object | предоплата, которая взымается за номер сразу при бронировании
   `blocks[].[recovery].unit` | string | единица измерения поля `recovery.amount` (% - "percent" или дни - "day")
   `blocks[].[recovery].amount` | integer | кол-во ед. предоплаты (1-9 - дни 10-100 - проценты)
@@ -86,10 +85,86 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
   `requisites.email` | string | email адресс бронирующего
   `requisites.phone` | string | телефон бронирующего
   [[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states))
-  [[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
-  [[`accepted`](#accepted)] | boolean | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
+  <a name="next_state"></a>[[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
+  <a name="accepted"></a>[[`accepted`](#accepted)] | boolean | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
 
 
+####Response
+Результат запроса возвращается в формате `application/json`
+<div markdown="1" class="collapse" title="Response Body Example" collapse="true">
+```json
+{
+    "ok" : 1,
+    "data" : {
+        "state" : "complete",
+        "booking" : {
+            "arrival_date" : "2014-09-23",
+            "departure_date" : "2014-09-24",
+            "blocks" : [
+                {
+                    "tariff" :  "507f1f77bcf86cd799439011",
+                    "total_cost" : 500,
+                    "quantity" : 1,
+                    "conditions" : {
+                        "cancellation" : 3,
+                        "booking_method" : 1
+                    },
+                    "recovery" : {
+                        "unit" : "percent",
+                        "amount" : 10,
+                        "sum" : 50
+                    },
+                    "living" : [
+                        {
+                            "first_name" : "Booker",
+                            "last_name" : "Da Mega"
+                        }
+                    ]
+                }
+            ],
+            "requisites" : {
+                "first_name" : "Booker",
+                "last_name" : "Da Mega",
+                "email" : "mega.booker@hotels24.ua",
+                "phone" : "0800210017"
+            },
+            "general_conditions" : {
+                "booking_sum" : 500,
+                "cancellation" : 3,
+                "booking_method" : 3,
+                "recoveries" : [
+                    {
+                        "unit" : "percent",
+                        "amount" : 10,
+                        "sum" : 50
+                    }
+                ],
+                "recovery_sum" : 50
+            }
+        },
+        "status" : "ok",
+        "status_body" : {}
+    },
+    "msg" : "ok",
+    "code" : 200
+}
+```
+</div>
+#####Response Parameters
+Name | Type | Description | Notes
+--- | --- | --- | ---
+<a name="f_state"></a>`state` | string | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#states))
+`booking` | object | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#next_state),[`accepted`](#accepted))
+`status` | string | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#state_statuses)
+<a name ="f_status_body"></a>`status_body` | object | дополнительная информация о состоянии процесса бронирования
+
+<a name="state_statuses"></a>######Response State Statuses
+Status State | Description
+--- | ---
+`"ok"` |  все хорошо. к состоянию пришли успешно
+`"error"` |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
+`"requirements"` | некоторые критические данные для продолжения процесса отсутствуют
+`"rejected"` | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
 
 
 
