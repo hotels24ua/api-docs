@@ -66,7 +66,7 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 
 #####Request Parameters
 
-  Name | Type | Description | Notes
+  Name | Type | Description
   --- | --- | --- | ---
   `arrival_date` | [date](#t_date) | дата заезда
   `departure_date` | [date](#t_date) | дата выезда
@@ -81,7 +81,7 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
   `blocks[].[recovery].amount` | integer | кол-во ед. предоплаты
   `blocks[].[recovery].sum` | integer | общая сумма пердоплаты в денежном эквиваленте (указывается за весь период по конкретному блоку)
   `blocks[].total_cost` | integer | стоимость проживания в блоке за весь период
-  `blocks[].[living]` | list | список проживающих (на каждый `quantity` или один на все. В случае, если проживающих не достаточно, будет выбран тот, который указан в поле [`requisites`](#requisites)
+  `blocks[].[living]` | list | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
   `blocks[].[living[]].first_name` | string |  имя проживающего в блоке
   `blocks[].[living[].last_name]` | string | фамилия проживающего в блоке
   `requisites` | object | объект реквизитов бронирующего клиента (обязателен для стадий после [`"preRequisites"`](#state.preRequisites))
@@ -108,8 +108,8 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 Name | Type | Description | Notes
  --- | --- | --- | ---
 <a name="f_state"></a>`state` | string | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#states))
-<a name="f_booking">`booking` | object | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#next_state),[`accepted`](#accepted))
 `status` | string | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#state_statuses)
+<a name="f_booking">`booking` | object | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#next_state),[`accepted`](#accepted))
 <a name ="f_status_body"></a>`status_body` | object | дополнительная информация о состоянии процесса бронирования
 `request_id` | string | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
@@ -153,7 +153,6 @@ Name | Description
                 {
                     "tariff" :  "507f1f77bcf86cd799439011",
                     "total_cost" : 500,
-                    "quantity" : 1,
                     "conditions" : {
                         "cancellation" : 3,
                         "booking_method" : 1
