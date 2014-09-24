@@ -1,0 +1,1 @@
+{"name":"Api-docs","tagline":"Api Related Documentation","body":"Hotels24 API Documentation (ru)\r\n========\r\n\r\n\r\n- [Public Methods/Публичные методы] (public/README.md)\r\n    - [[POST] hotel/booking](public/booking/hotel.md) - быстрое бронирование отелей\r\n","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
