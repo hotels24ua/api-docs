@@ -1,12 +1,13 @@
 ```
-
-[POST] booking/hotel
-
+[POST] /booking/hotel
 ```
 
 [.](https://developers.google.com/discovery/v1/reference/apis/list)
 
-#####Request supports formats:
+
+[`code_text`](#nonInline)`.www`
+
+#####Запрос принимает данные в форматах:
 
  * application/json - json encoded post body
  * application/x-www-form-urlencoded - url encoded
