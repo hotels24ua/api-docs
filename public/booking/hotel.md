@@ -89,11 +89,11 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
   `requisites.last_name` | string | фамилия бронирующего
   `requisites.email` | string | email адресс бронирующего
   `requisites.phone` | string | телефон бронирующего
-  [[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states))
-  <a name="next_state"></a>[[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
-  <a name="accepted"></a>[[`accepted`](#accepted)] | boolean | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
+  <a name="f_request_id"></a>[[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states))
+  <a name="f_next_state"></a>[[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
+  <a name="f_accepted"></a>[[`accepted`](#accepted)] | boolean | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
 
-
+Параметр <a name="accepted"></a>**accepted**  - хитрый параметр. при передаче в теле запроса со значением `true` и дополнительным параметром `request_id` инициирует принятие данных указаных в поле [`booking`](#f_booking) ответа от сервера.
 
 ####Response
 Результат запроса возвращается в формате `application/json`
@@ -147,7 +147,8 @@ Example:
                     }
                 ],
                 "recovery_sum" : 50
-            }
+            },
+            "request_id" : "60ef1a77fcf86cd791434021"
         },
         "status" : "ok",
         "status_body" : {}
@@ -189,6 +190,13 @@ Name | Description
 <a name="state.postRequisites"></a>`"postRequisites"` | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
  `todo payments` | ...
 <a name="state.complete"></a>`"complete"` | бронирование завершено
+
+<a name="error_codes"><a>
+####Error Codes
+Code | Constant Name | Description
+ --- | --- | ---
+31415 | PI | Все плохо
+
 
 
 --------------------------------
