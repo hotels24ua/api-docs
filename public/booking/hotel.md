@@ -32,7 +32,7 @@ it should looks [like](https://developers.google.com/discovery/v1/reference/apis
 ######Типы данных
 Обозначение | Варианты использования | Описание
 --- | --- | ---
-`boolean` | `boolean`, `bool` | true, false, 1, 0 , "yes", "no"
+`boolean` | `boolean`, `bool` | `true`, `false`, `1`, `0` , `"yes"`, `"no"`
 `string` | `string`, `str` |  Строка
 `integer` | `int`, `integer` | Число. Целое
 `object` | `object`, `obj`, `{}` | объект с какими-то свойствами
