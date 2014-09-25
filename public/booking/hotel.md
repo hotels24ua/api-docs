@@ -112,19 +112,11 @@ Name                                        | Type      | Description
  ---                                        | ---       | ---
 <a name="f_state"></a>`state`               | string    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
 <a name="f_status"></a>`status`             | string    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking">`booking`               | object    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+<a name="f_booking"></a>`booking`           | object    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
 <a name="f_status_body"></a>`status_body`   | object    | дополнительная информация о состоянии процесса бронирования
 <a name="rsf_request_id"></a>`request_id`   | string    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
-<a name="response.statuses"></a>
-##### Response State Statuses
-State                                               | Description
- ---                                                | ---
-`"ok"`<a name="status.ok"></a>                      |  все хорошо. к состоянию пришли успешно
-`"requirements"`<a name="status.requirements"></a>  | некоторые критические данные для продолжения процесса отсутствуют
-`"rejected"`<a name="status.rejected"></a>          | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
-`"error"`<a name="status.error"></a>                |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
-`"failure"`<a name="status.failure"></a>            | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
+
 
 <a name="booking.states"></a>
 ##### Стадии бронирования (States)
@@ -137,6 +129,26 @@ Name                                                    | Description
 [`"prePayment"`]<a name="state.prePayment"></a>         | перед оплатой
 [`"postPayment"`]<a name="state.postPayment"></a>       | после оплаты
 `"complete"`<a name="state.complete"></a>               | бронирование завершено
+
+<a name="response.statuses"></a>
+##### Response State Statuses
+State                                               | Description
+ ---                                                | ---
+`"ok"`<a name="status.ok"></a>                      |  все хорошо. к состоянию пришли успешно
+`"requirements"`<a name="status.requirements"></a>  | некоторые критические данные для продолжения процесса отсутствуют
+`"rejected"`<a name="status.rejected"></a>          | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
+`"error"`<a name="status.error"></a>                |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
+`"failure"`<a name="status.failure"></a>            | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
+
+##### Booking Field
+Field                   | Type                              |  Description
+---                     | ---                               | ---
+`arrival_date`          | same as request.arrival_date      |
+`departure_date`        | same as request.departure_date    |
+`blocks`                | same as request.blocks            |
+`requisites`            | same as request.requisites        |
+`general_conditions`    | object                            |
+
 
 ##### Ресурсы (Типы) оплат (Payment Methods Resources)
 JSON объект с спецификацией ресурса оплаты
@@ -267,10 +279,10 @@ Code    | Constant Name | Description
                 ],
                 "recovery_sum" : 50
             },
-            "request_id" : "60ef1a77fcf86cd791434021"
         },
         "status" : "ok",
-        "status_body" : {}
+        "status_body" : {},
+        "request_id" : "60ef1a77fcf86cd791434021"
     },
     "msg" : "ok",
     "code" : 200
