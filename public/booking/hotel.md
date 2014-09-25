@@ -113,8 +113,8 @@ Name                                                | Type                      
 <a name="f_state"></a>`state`                       | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
 <a name="f_status"></a>`status`                     | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
 <a name="f_booking"></a>`booking`                   | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-<pre>booking.arrival_date</pre>                              | ([same](#f_ds))           | -//-
-<pre>booking.departure_date</pre>                            | ([same](#f_de))           | -//-
+```booking.arrival_date```                              | ([same](#f_ds))           | -//-
+```booking.departure_date```                            | ([same](#f_de))           | -//-
 <pre>booking.blocks[]</pre>                                  | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
 <pre>booking.requisites</pre>                                | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
 <pre>booking.conditions</pre>                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
