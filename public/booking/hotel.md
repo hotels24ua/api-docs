@@ -9,13 +9,13 @@
 Content
 * Общее описание
 * Специальные обозначения
-    * Параметры
-    * Типы данных
-* Запрос бронирования
-    * Параметры запроса
-* Ответы от сервера
- * Поля ответов
- *
+    * (Параметры)[#parameters.desc]
+    * (Типы данных)[#types.desc]
+* (Запрос бронирования)[#request]
+    * (Параметры запроса)[#request.parameters]
+* (Ответы от сервера)[#response]
+    * (Параметры ответа)[#response.parameters]
+
 
 
 
@@ -34,20 +34,22 @@ Content
 
 ####Специальные обозначения
 #####Обозначения параметров
-Пример | Описание
---- | ---
-`parameter` | обычный обязательный параметр
-`[optional_parameter]` | опциональный параметр заключен в кв.скобки (может присутствовать, а может и отсутствовать. Детали поведеня должны быть приложены в описании)
-`parameter.property` | `parameter` является объектом, а `property` его свойством
-`[optional_parameter].property` | опциональный параметр `optional_parameter`, но если присутствует, то обязательно должен иметь свойство `property`
-`[optional_parameter.property2]` | опциональный параметр `optional_parameter`, опционально может иметь свойство `property2`
-[`parameter_doc_ref`](#parameter_reference) | ссылка на параметр в документации
+<a name="parameters.desc"></a>
+Пример                                          | Описание
+---                                             | ---
+`parameter`                                     | обычный обязательный параметр
+`[optional_parameter]`                          | опциональный параметр заключен в кв.скобки (может присутствовать, а может и отсутствовать. Детали поведеня должны быть приложены в описании)
+`parameter.property`                            | `parameter` является объектом, а `property` его свойством
+`[optional_parameter].property`                 | опциональный параметр `optional_parameter`, но если присутствует, то обязательно должен иметь свойство `property`
+`[optional_parameter.property2]`                | опциональный параметр `optional_parameter`, опционально может иметь свойство `property2`
+[`parameter_doc_ref`](#parameter_reference)     | ссылка на параметр в документации
 [`parameter_doc_ref.`](#parameterRef)`property` | то же самое что и `parameter.property`, только на родительский параметр присутствует ссылка в документации
-`parameter[]` | параметр со списком значений (известны так же как `list`, `enum`, `Array`, etc)
-`parameter[].itemProperty` | параметр является списком объектов с обязательными свойствами `itemProperty`
-`parameter[].[itemProperty2]` | параметр является списком объектов с опциональными свойствами `itemProperty`
+`parameter[]`                                   | параметр со списком значений (известны так же как `list`, `enum`, `Array`, etc)
+`parameter[].itemProperty`                      | параметр является списком объектов с обязательными свойствами `itemProperty`
+`parameter[].[itemProperty2]`                   | параметр является списком объектов с опциональными свойствами `itemProperty`
 
 #####Обозначения типов данных
+<a name="types.desc"></a>
 Обозначение                 | Варианты использования        | Описание
 ---                         | ---                           | ---
 `boolean`                   | `boolean`, `bool`             | `true`, `false`, `1`, `0` , `"yes"`, `"no"`
@@ -62,14 +64,14 @@ Content
 [`entity`](#entity)         | [`SomeEntity`](#someEntity)   | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
 
 --------------------------------------
-
+<a name="request"></a>
 ### Запрос бронирования (Request)
 Запрос принимает данные в форматах:
 * `application/json` - json encoded post body
 * `application/x-www-form-urlencoded` - url encoded
 
 #### Параметры запроса (Request Parameters)
-
+<a name="request.parameters"></a>
   Name | Type | Description
   ---                                                           | :---:             | --- | ---
   `arrival_date`<a name="f_ds"></a>                             | [date](#t_date)   | дата заезда
@@ -98,6 +100,7 @@ Content
   [[`accepted`](#accepted)]<a name="f_accepted"></a>            | mixed             | идентификатор приятия данных по предварительно остановленному [`next_state`](#f_next_state) [состоянию](#booking.states)
   `[payment_id]`<a name="f_payment_id"></a>                     | string            | идентификатор оплаты
 
+<a name="response"></a>
 ###Ответы (Responses)
 Результат запроса возвращается в формате `application/json`
 
@@ -108,43 +111,43 @@ Content
 
 <a name="response.parameters"></a>
 ##### Параметры ответа
-Name                                                | Type                      | Description
- ---                                                | ---                       | ---
-<a name="f_state"></a>`state`                       | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status`                     | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking"></a>`booking`                   | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-`booking.arrival_date`                              | ([same](#f_ds))           | -//-
-`booking.departure_date`                            | ([same](#f_de))           | -//-
-`booking.blocks[]`                                  | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
-`booking.requisites`                                | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
-`booking.conditions`                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
-`booking.conditions.booking_sum`                    | integer                               | общая сумма по бронированию по всем блокам
-`booking.conditions.cancellation`                   | integer                               | итоговый срок отмены
-`booking.conditions.[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров (структура повторяет [`recovery`](#f_recovery)). Может отсутствовать, если бронирование не предпологает предоплаты в этот отель
-`booking.conditions.[recovery_sum]`      | integer                               | общая сумма по предоплатам. так же может отсутствовать если бронирование не требует предоплат
-`booking.conditions.[payment_methods[]]`            | list                                  | список объектов - ресурсов (типов) оплат возможных для данного бронирования. если бронирование не требует предоплат, то этот элемент будет отсутствовать
-`booking.conditions.[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-`booking.conditions.[payment_methods[]].type`       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
-`booking.conditions.[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
-`booking.conditions.[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
-`booking.conditions.[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
-<a name="f_status_body"></a>`status_body`           | object                                | дополнительная информация о состоянии процесса бронирования
-<a name="rsf_request_id"></a>`request_id`           | string                                | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
+Name                                                                    | Type                      | Description
+ ---                                                                    | ---                       | ---
+<a name="f_state"></a>`state`                                           | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`status`                                         | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_booking"></a>`booking`                                       | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+`booking.arrival_date`                                                  | ([same](#f_ds))           | -//-
+`booking.departure_date`                                                | ([same](#f_de))           | -//-
+`booking.blocks[]`                                                      | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
+`booking.requisites`                                                    | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
+`booking.conditions`                                                    | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
+`booking.conditions.booking_sum`                                        | integer                   | общая сумма по бронированию по всем блокам
+`booking.conditions.cancellation`                                       | integer                   | итоговый срок отмены
+`booking.conditions.[recoveries[]]`                                     | [[recovery](#f_recovery)] | список всех предоплат со всех номеров (структура повторяет [`recovery`](#f_recovery)). Может отсутствовать, если бронирование не предпологает предоплаты в этот отель
+`booking.conditions.[recovery_sum]`                                     | integer                   | общая сумма по предоплатам. так же может отсутствовать если бронирование не требует предоплат
+`booking.conditions.[payment_methods[]]`<a name="payment.resources"></a>| list                      | список объектов - ресурсов (типов) оплат возможных для данного бронирования. если бронирование не требует предоплат, то этот элемент будет отсутствовать
+`booking.conditions.[payment_methods[]].id`                             | string                    | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+`booking.conditions.[payment_methods[]].type`<a name="p_type"></a>      | integer                   | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+`booking.conditions.[payment_methods[]].rel`                            | string                    | абсолютный URL адресс для проведения оплаты
+`booking.conditions.[payment_methods[]].rel_type`                       | string                    | тип ресурса может быть `iframe`, `link`, `file`, `html`
+`booking.conditions.[payment_methods[]].title`                          | string                    | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+`status_body`<a name="f_status_body"></a>                               | object                    | дополнительная информация о состоянии процесса бронирования
+`request_id`<a name="rsf_request_id"></a>                               | string                    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
 
 
 <a name="booking.states"></a>
 ##### Стадии бронирования (States)
 
-Name                                                    | Description
- ---                                                   | ---
-`"preConditions"`<a name="state.preConditions"></a>     | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
-`"postConditions"`<a name="state.postConditions"></a>   | демонстрация сложившихся условий бронирования
-`"preRequisites"`<a name="state.preRequisites"></a>     | ожидание ввода реквизитов
-`"postRequisites"`<a name="state.postRequisites"></a>   | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
+Name                                                  | Description
+ ---                                                  | ---
+`"preConditions"`<a name="state.preConditions"></a>   | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
+`"postConditions"`<a name="state.postConditions"></a> | демонстрация сложившихся условий бронирования
+`"preRequisites"`<a name="state.preRequisites"></a>   | ожидание ввода реквизитов
+`"postRequisites"`<a name="state.postRequisites"></a> | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
 `"prePayment"`<a name="state.prePayment"></a>         | перед оплатой. отсутствовует если бронирование предполагает расчет в отеле
 `"postPayment"`<a name="state.postPayment"></a>       | после оплаты. отсутствовует если бронирование предполагает расчет в отеле
-`"complete"`<a name="state.complete"></a>               | бронирование завершено
+`"complete"`<a name="state.complete"></a>             | бронирование завершено
 
 <a name="response.statuses"></a>
 ##### Response State Statuses
@@ -191,7 +194,7 @@ State                                               | Description
 К примеру, все стадии по бронированию (условия и реквизиты) были пройдены, но для завершения требуется произвести оплату.
 
 В этом случае [`state`](#f_state) будет равен [`"prePayment"`](#state.prePayment) и в теле поля [`booking`](#f_booking) будет присутствовать секция `payment_methods` со списком возможных способов оплаты ([PaymentResource][#payment.resources]).
-В каждом из способов оплаты, помимо [типа](#payment_types) есть идентификатор (`payment_id`)[#payment_id].
+В каждом из способов оплаты, помимо [типа](#p_type) есть идентификатор (`payment_id`)[#payment_id].
 Тоесть ваше приложение выбирает из списка какие типы оплат оно поддерживает, дает (или не дает) клиенту выбор из этих типов оплат. Производит оплату, а затем делает повторный запрос с параметрами
 * [`accepted`](#f_accepted): true
 * [`payment_id`](#f_payment_id): <payment_id> id типа оплаты, которая была произведена
