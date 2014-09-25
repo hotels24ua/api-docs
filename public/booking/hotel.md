@@ -71,32 +71,32 @@ Content
 #### Параметры запроса (Request Parameters)
 
   Name | Type | Description
-  --- | --- | --- | ---
-  `arrival_date` | [date](#t_date) | дата заезда
-  `departure_date` | [date](#t_date) | дата выезда
-  `blocks` | list | список бронируемых объектов (комнат/тарифов). Кол-во номеров с одинаковым тарифом регулируется кол-вом блоков.
-  `blocks[].[id]` | scalar | любой уникальный id блока. если кол-во номеров с одинаковым тарифом больше одного. Если указан, то в ответе от сервера в параметре [`booking`](#f_booking) в блоках этот id так же будет присутствовать (не используется системой, может понадобится только для привязки для валидации)
-  `blocks[].tariff` | string |
-  `blocks[].[conditions]` | object | объект с условиями бронирования `cancellation` и `booking_method`
-  `blocks[].[conditions.cancellation]` | integer | кол-во дней перед днем заезда после которого отмена не возможна
-  `blocks[].[conditions.booking_method]` | integer |метод бронирования для данного блока (опионален. если присутствует - будет свалидирован с фактическим методом указаным в базе. используется только в случае если для клиента важно где и как платить)
-  `blocks[].[recovery]` | object | предоплата (тот самый "**штраф**"), которая взымается за номер сразу при бронировании
-  `blocks[].[recovery].unit` | string | единица измерения поля `recovery.amount` ("percent" - проценты% или "day" - дни)
-  `blocks[].[recovery].amount` | integer | кол-во ед. предоплаты
-  `blocks[].[recovery].sum` | integer | общая сумма пердоплаты в денежном эквиваленте (указывается за весь период по конкретному блоку)
-  `blocks[].total_cost` | integer | стоимость проживания в блоке за весь период
-  `blocks[].[living]`                                           | list      | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
-  `blocks[].[living[]].first_name`                              | string    |  имя проживающего в блоке
-  `blocks[].[living[].last_name]`                               | string    | фамилия проживающего в блоке
-  `requisites`                                                  | object    | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
-  `requisites.first_name`                                       | string | имя бронирующего
-  `requisites.last_name`                                        | string | фамилия бронирующего
-  `requisites.email`                                            | string | email адресс бронирующего
-  `requisites.phone`                                            | string | телефон бронирующего
-  <a name="rqf_request_id"></a>[[`request_id`](#request_id)]    | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`request_id`](#rsf_request_id)
-  <a name="f_next_state"></a>[[`next_state`](#f_next_state)]    | string | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
-  <a name="f_accepted"></a>[[`accepted`](#accepted)]            | mixed | идентификатор приятия данных по предварительно остановленному [`next_state`](#f_next_state) [состоянию](#booking.states)
-  <a name="f_payment_id"></a>`[payment_id]`                     | string | идентификатор оплаты
+  ---                                                           | :---:             | --- | ---
+  `arrival_date`                                                | [date](#t_date)   | дата заезда
+  `departure_date`                                              | [date](#t_date)   | дата выезда
+  `blocks`                                                      | list              | список бронируемых объектов (комнат/тарифов). Кол-во номеров с одинаковым тарифом регулируется кол-вом блоков.
+  `blocks[].[id]`                                               | scalar            | любой уникальный id блока. если кол-во номеров с одинаковым тарифом больше одного. Если указан, то в ответе от сервера в параметре [`booking`](#f_booking) в блоках этот id так же будет присутствовать (не используется системой, может понадобится только для привязки для валидации)
+  `blocks[].tariff`                                             | string            |
+  `blocks[].[conditions]`                                       | object            | объект с условиями бронирования `cancellation` и `booking_method`
+  `blocks[].[conditions.cancellation]`                          | integer           | кол-во дней перед днем заезда после которого отмена не возможна
+  `blocks[].[conditions.booking_method]`                        | integer           | метод бронирования для данного блока (опионален. если присутствует - будет свалидирован с фактическим методом указаным в базе. используется только в случае если для клиента важно где и как платить)
+  `blocks[].[recovery]`<a name="f_recovery"></a>                | object            | предоплата (тот самый "**штраф**"), которая взымается за номер сразу при бронировании
+  `blocks[].[recovery].unit`                                    | string            | единица измерения поля `recovery.amount` ("percent" - проценты% или "day" - дни)
+  `blocks[].[recovery].amount`                                  | integer           | кол-во ед. предоплаты
+  `blocks[].[recovery].sum`                                     | integer           | общая сумма пердоплаты в денежном эквиваленте (указывается за весь период по конкретному блоку)
+  `blocks[].total_cost`                                         | integer           | стоимость проживания в блоке за весь период
+  `blocks[].[living]`                                           | list              | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
+  `blocks[].[living[]].first_name`                              | string            |  имя проживающего в блоке
+  `blocks[].[living[].last_name]`                               | string            | фамилия проживающего в блоке
+  `requisites`                                                  | object            | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
+  `requisites.first_name`                                       | string            | имя бронирующего
+  `requisites.last_name`                                        | string            | фамилия бронирующего
+  `requisites.email`                                            | string            | email адресс бронирующего
+  `requisites.phone`                                            | string            | телефон бронирующего
+  [[`request_id`](#request_id)]<a name="rqf_request_id"></a>    | string            | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`request_id`](#rsf_request_id)
+  [[`next_state`](#f_next_state)]<a name="f_next_state"></a>    | string            | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
+  [[`accepted`](#accepted)]<a name="f_accepted"></a>            | mixed             | идентификатор приятия данных по предварительно остановленному [`next_state`](#f_next_state) [состоянию](#booking.states)
+  `[payment_id]`<a name="f_payment_id"></a>                     | string            | идентификатор оплаты
 
 ###Ответы (Responses)
 Результат запроса возвращается в формате `application/json`
@@ -108,20 +108,30 @@ Content
 
 <a name="response.parameters"></a>
 ##### Параметры ответа
-Name                                        | Type      | Description
- ---                                        | ---       | ---
-<a name="f_state"></a>`state`               | string    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status`             | string    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking"></a>`booking`           | object    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-<a name="f_status_body"></a>`status_body`   | object    | дополнительная информация о состоянии процесса бронирования
-<a name="rsf_request_id"></a>`request_id`   | string    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
+Name                                        | Type                              | Description
+ ---                                        | ---                               | ---
+<a name="f_state"></a>`state`               | string                            | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`status`             | string                            | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_booking"></a>`booking`           | object                            | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+`booking.arrival_date`                      | same as `request.arrival_date`    |
+`booking.departure_date`                    | same as `request.departure_date`  |
+`booking.blocks[]`                          | same as `request.blocks`          | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
+`booking.requisites`                        | same as `request.requisites`      | присутствуют только в случае если были переданы ранее
+`booking.conditions`                        | object                            | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
+`booking.conditions.booking_sum`            | integer                           | общая сумма по бронированию по всем блокам
+`booking.conditions.cancellation`           | integer                           | итоговый срок отмены
+`booking.conditions.[recoveries[]]`         | [[recovery](#f_recovery)]         | список всех предоплат со всех номеров каждый
+`booking.conditions.[recovery_sum]`         | integer                           |
+`booking.conditions.payment_methods`        | list                              |
+<a name="f_status_body"></a>`status_body`   | object                            | дополнительная информация о состоянии процесса бронирования
+<a name="rsf_request_id"></a>`request_id`   | string                            | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
 
 
 <a name="booking.states"></a>
 ##### Стадии бронирования (States)
 Name                                                    | Description
- ---                                                    | ---
+: ---                                                   | ---
 `"preConditions"`<a name="state.preConditions"></a>     | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
 `"postConditions"`<a name="state.postConditions"></a>   | демонстрация сложившихся условий бронирования
 `"preRequisites"`<a name="state.preRequisites"></a>     | ожидание ввода реквизитов
@@ -134,20 +144,20 @@ Name                                                    | Description
 ##### Response State Statuses
 State                                               | Description
  ---                                                | ---
-`"ok"`<a name="status.ok"></a>                      |  все хорошо. к состоянию пришли успешно
+`"ok"`<a name="status.ok"></a>                      | все хорошо. к состоянию пришли успешно
 `"requirements"`<a name="status.requirements"></a>  | некоторые критические данные для продолжения процесса отсутствуют
 `"rejected"`<a name="status.rejected"></a>          | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
-`"error"`<a name="status.error"></a>                |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
+`"error"`<a name="status.error"></a>                | ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
 `"failure"`<a name="status.failure"></a>            | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
 
 ##### Booking Field
 Field                   | Type                              |  Description
 ---                     | ---                               | ---
-`arrival_date`          | same as request.arrival_date      |
-`departure_date`        | same as request.departure_date    |
-`blocks`                | same as request.blocks            |
-`requisites`            | same as request.requisites        |
-`general_conditions`    | object                            |
+
+
+##### Общие условия бронирования
+Field                   | Type
+---     |   ---
 
 
 ##### Ресурсы (Типы) оплат (Payment Methods Resources)
