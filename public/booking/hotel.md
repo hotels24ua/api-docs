@@ -137,7 +137,7 @@ Name                                                | Type                      
 ##### Стадии бронирования (States)
 
 Name                                                    | Description
-: ---                                                   | ---
+ ---                                                   | ---
 `"preConditions"`<a name="state.preConditions"></a>     | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
 `"postConditions"`<a name="state.postConditions"></a>   | демонстрация сложившихся условий бронирования
 `"preRequisites"`<a name="state.preRequisites"></a>     | ожидание ввода реквизитов
