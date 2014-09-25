@@ -1,7 +1,10 @@
 ```
 [POST] /booking/hotel
 ```
-=> [Здесь](https://github.com/hotels24ua/api-docs/issues/1) можно обсудить документацию, задать вопросы, добавить заявки на улучшения в сам метод бронирования, если вы не осмеливаетесь делать pull-request
+>
+> [Здесь](https://github.com/hotels24ua/api-docs/issues/1) можно обсудить документацию, задать вопросы, добавить заявки на улучшения в сам метод бронирования, если вы не осмеливаетесь делать pull-request
+>
+
 
 Content
 * Общее описание
@@ -45,18 +48,18 @@ Content
 `parameter[].[itemProperty2]` | параметр является списком объектов с опциональными свойствами `itemProperty`
 
 #####Обозначения типов данных
-Обозначение | Варианты использования | Описание
---- | --- | ---
-`boolean` | `boolean`, `bool` | `true`, `false`, `1`, `0` , `"yes"`, `"no"`
-`string` | `string`, `str` |  Строка
-`integer` | `int`, `integer` | Число. Целое
-`object` | `object`, `obj`, `{}` | объект с какими-то свойствами
-<a name="t_date"></a>`date` | `date` | Строка даты дня. формат: `"yyyy-mm-dd"`
-`dateTime` | `dateTime` | Дата. Дата-время (RFC 3339) `"yyyy-mm-ddTHH:MM:ss"`
-`list` | `list`, `array` | список
- | `list[string]`, `[string]`, | список состоящий из типов указаных в `[...]` (здесь - строк)
- | [[`Entity`](#entity)] | список состоящий из набора [`Entity`](#entity)
-[`entity`](#entity) | [`SomeEntity`](#someEntity) | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
+Обозначение                 | Варианты использования        | Описание
+---                         | ---                           | ---
+`boolean`                   | `boolean`, `bool`             | `true`, `false`, `1`, `0` , `"yes"`, `"no"`
+`string`                    | `string`, `str`               |  Строка
+`integer`                   | `int`, `integer`              | Число. Целое
+`object`                    | `object`, `obj`, `{}`         | объект с какими-то свойствами
+<a name="t_date"></a>`date` | `date`                        | Строка даты дня. формат: `"yyyy-mm-dd"`
+`dateTime`                  | `dateTime`                    | Дата. Дата-время (RFC 3339) `"yyyy-mm-ddTHH:MM:ss"`
+`list`                      | `list`, `array`               | список
+                            | `list[string]`, `[string]`,   | список состоящий из типов указаных в `[...]` (здесь - строк)
+                            | [[`Entity`](#entity)]         | список состоящий из набора [`Entity`](#entity)
+[`entity`](#entity)         | [`SomeEntity`](#someEntity)   | тип является какой-то сущностью и полностью соответствует её схеме (+ссылка на документацию)
 
 --------------------------------------
 
@@ -82,18 +85,18 @@ Content
   `blocks[].[recovery].amount` | integer | кол-во ед. предоплаты
   `blocks[].[recovery].sum` | integer | общая сумма пердоплаты в денежном эквиваленте (указывается за весь период по конкретному блоку)
   `blocks[].total_cost` | integer | стоимость проживания в блоке за весь период
-  `blocks[].[living]` | list | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
-  `blocks[].[living[]].first_name` | string |  имя проживающего в блоке
-  `blocks[].[living[].last_name]` | string | фамилия проживающего в блоке
-  `requisites` | object | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
-  `requisites.first_name` | string | имя бронирующего
-  `requisites.last_name` | string | фамилия бронирующего
-  `requisites.email` | string | email адресс бронирующего
-  `requisites.phone` | string | телефон бронирующего
-  <a name="rqf_request_id"></a>[[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`request_id`](#rsf_request_id)
-  <a name="f_next_state"></a>[[`next_state`](#f_next_state)] | string | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
-  <a name="f_accepted"></a>[[`accepted`](#accepted)] | mixed | идентификатор приятия данных по предварительно остановленному [`next_state`](#f_next_state) [состоянию](#booking.states)
-  <a name="f_payment_id"></a>`[payment_id]` | string | идентификатор оплаты
+  `blocks[].[living]`                                           | list      | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
+  `blocks[].[living[]].first_name`                              | string    |  имя проживающего в блоке
+  `blocks[].[living[].last_name]`                               | string    | фамилия проживающего в блоке
+  `requisites`                                                  | object    | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
+  `requisites.first_name`                                       | string | имя бронирующего
+  `requisites.last_name`                                        | string | фамилия бронирующего
+  `requisites.email`                                            | string | email адресс бронирующего
+  `requisites.phone`                                            | string | телефон бронирующего
+  <a name="rqf_request_id"></a>[[`request_id`](#request_id)]    | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`request_id`](#rsf_request_id)
+  <a name="f_next_state"></a>[[`next_state`](#f_next_state)]    | string | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
+  <a name="f_accepted"></a>[[`accepted`](#accepted)]            | mixed | идентификатор приятия данных по предварительно остановленному [`next_state`](#f_next_state) [состоянию](#booking.states)
+  <a name="f_payment_id"></a>`[payment_id]`                     | string | идентификатор оплаты
 
 ###Ответы (Responses)
 Результат запроса возвращается в формате `application/json`
@@ -105,45 +108,45 @@ Content
 
 <a name="response.parameters"></a>
 ##### Параметры ответа
-Name | Type | Description | Notes
- --- | --- | --- | ---
-<a name="f_state"></a>`state` | string | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status` | string | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking">`booking` | object | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-<a name="f_status_body"></a>`status_body` | object | дополнительная информация о состоянии процесса бронирования
-<a name="rsf_request_id"></a>`request_id` | string | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
+Name                                        | Type      | Description
+ ---                                        | ---       | ---
+<a name="f_state"></a>`state`               | string    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`status`             | string    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_booking">`booking`               | object    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительным полем [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+<a name="f_status_body"></a>`status_body`   | object    | дополнительная информация о состоянии процесса бронирования
+<a name="rsf_request_id"></a>`request_id`   | string    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
 <a name="response.statuses"></a>
 ##### Response State Statuses
-State | Description
- --- | ---
-`"ok"`<a name="status.ok"></a> |  все хорошо. к состоянию пришли успешно
-`"requirements"`<a name="status.requirements"></a>| некоторые критические данные для продолжения процесса отсутствуют
-`"rejected"`<a name="status.rejected"></a> | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
-`"error"`<a name="status.error"></a> |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
-`"failure"`<a name="status.failure"></a> | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
+State                                               | Description
+ ---                                                | ---
+`"ok"`<a name="status.ok"></a>                      |  все хорошо. к состоянию пришли успешно
+`"requirements"`<a name="status.requirements"></a>  | некоторые критические данные для продолжения процесса отсутствуют
+`"rejected"`<a name="status.rejected"></a>          | ошибка интерполяции данных. Какой-то набор данных фактически (имеющийся в базе) не соответствует представленному в запросе. В этом случае в [`status_body`](#f_status_body) будет присутствовать набор данных которые были отвергнуты со структурой повторяющей структуру запроса. Для сравнения с фактическим набором данных можно использовать свойства поля [`booking`](#f_booking)
+`"error"`<a name="status.error"></a>                |  ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
+`"failure"`<a name="status.failure"></a>            | переданы ошибочные данные (форматы, неверные ссылки и т.п.) в поле [`status_body`](#f_status_body) будет передан объект указывающий на некорректные данные с кодом ошибки вместо значений (см. [коды ошибок](#error_codes))
 
 <a name="booking.states"></a>
 ##### Стадии бронирования (States)
-Name | Description
- --- | ---
-`"preConditions"`<a name="state.preConditions"></a> | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
-`"postConditions"`<a name="state.postConditions"></a> | демонстрация сложившихся условий бронирования
-`"preRequisites"`<a name="state.preRequisites"></a> | ожидание ввода реквизитов
-`"postRequisites"`<a name="state.postRequisites"></a> | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
-[`"prePayment"`]<a name="state.prePayment"></a> | перед оплатой
-[`"postPayment"`]<a name="state.postPayment"></a> | после оплаты
-`"complete"`<a name="state.complete"></a> | бронирование завершено
+Name                                                    | Description
+ ---                                                    | ---
+`"preConditions"`<a name="state.preConditions"></a>     | этап без идентификатора брони. Может быть использован параметром [`next_state`](#f_next_state) только для проверки доступности брони по переданным данным.
+`"postConditions"`<a name="state.postConditions"></a>   | демонстрация сложившихся условий бронирования
+`"preRequisites"`<a name="state.preRequisites"></a>     | ожидание ввода реквизитов
+`"postRequisites"`<a name="state.postRequisites"></a>   | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
+[`"prePayment"`]<a name="state.prePayment"></a>         | перед оплатой
+[`"postPayment"`]<a name="state.postPayment"></a>       | после оплаты
+`"complete"`<a name="state.complete"></a>               | бронирование завершено
 
 ##### Ресурсы (Типы) оплат (Payment Methods Resources)
 JSON объект с спецификацией ресурса оплаты
-Field | Description
---- | ---
-`id` | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-`type` | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
-`rel` | абсолютный URL адресс для проведения оплаты
-`rel_type` | тип ресурса может быть `iframe`, `link`, `file`, `html`
-`title` | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+Field       | Description
+---         | ---
+`id`        | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+`type`      | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+`rel`       | абсолютный URL адресс для проведения оплаты
+`rel_type`  | тип ресурса может быть `iframe`, `link`, `file`, `html`
+`title`     | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 
 
 
@@ -189,17 +192,22 @@ Field | Description
 
 
 #### Константы
-NAME | Value | Description
- --- | --- | ---
- PAYMENT | asd | www
- --- | --- | ---
- trarrrrr | asd | sas
+<a name="const.payment_types"></a>
+##### Константы Типов Оплат
+ NAME                   | Value | Description
+ ---                    | ---   | ---
+ PAY_INVOICE_HTML       | 810   | ...
+ PAY_CARD_URL           | 844   | ...
+ PAY_CARD_IFRAME        | 843   | ...
+ PAY_SEND_CARD_IFRAME   | 853   | ...
+ PAY_SEND_CARD_URL      | 854   | ...
+ PAY_SEND_CARD_POST     | 852   | ...
 
 
-#### Коды ошибок (Error Codes)
-Code | Constant Name | Description
- --- | --- | ---
-31415 | PI | Все плохо
+##### Коды ошибок (Error Codes)
+Code    | Constant Name | Description
+ ---    | ---           | ---
+31415   | PI            | Все плохо
 
 
 
