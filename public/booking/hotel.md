@@ -123,11 +123,11 @@ Name                                                | Type                      
 <sub>`booking.conditions.`</sub>`[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
 <sub>`booking.conditions.`</sub>`[recovery_sum]`                 | integer                               |
 <sub>`booking.conditions.`</sub>`[payment_methods[]]`            | list                                  |
-<sub>`booking.conditions.`</sub>`[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-<sub>`booking.conditions.`</sub>`[payment_methods[]].type`       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
-<sub>`booking.conditions.`</sub>`[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
-<sub>`booking.conditions.`</sub>`[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
-<sub>`booking.conditions.`</sub>`[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+<sub>`booking.conditions.[payment_methods[]].`</sub>`id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+<sub>`booking.conditions.[payment_methods[]].`</sub>`type`       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+<sub>`booking.conditions.[payment_methods[]].`</sub>`rel`        | string                                | абсолютный URL адресс для проведения оплаты
+<sub>`booking.conditions.[payment_methods[]].`</sub>`rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
+<sub>`booking.conditions.[payment_methods[]].`</sub>`title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 <a name="f_status_body"></a>`status_body`           | object                                | дополнительная информация о состоянии процесса бронирования
 <a name="rsf_request_id"></a>`request_id`           | string                                | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
