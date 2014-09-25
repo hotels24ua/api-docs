@@ -108,23 +108,28 @@ Content
 
 <a name="response.parameters"></a>
 ##### Параметры ответа
-Name                                        | Type                              | Description
- ---                                        | ---                               | ---
-<a name="f_state"></a>`state`               | string                            | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status`             | string                            | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking"></a>`booking`           | object                            | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями [`general_conditions`](#general_conditions) где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-`booking.arrival_date`                      | same as `request.arrival_date`    |
-`booking.departure_date`                    | same as `request.departure_date`  |
-`booking.blocks[]`                          | same as `request.blocks`          | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
-`booking.requisites`                        | same as `request.requisites`      | присутствуют только в случае если были переданы ранее
-`booking.conditions`                        | object                            | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
-`booking.conditions.booking_sum`            | integer                           | общая сумма по бронированию по всем блокам
-`booking.conditions.cancellation`           | integer                           | итоговый срок отмены
-`booking.conditions.[recoveries[]]`         | [[recovery](#f_recovery)]         | список всех предоплат со всех номеров каждый
-`booking.conditions.[recovery_sum]`         | integer                           |
-`booking.conditions.payment_methods`        | list                              |
-<a name="f_status_body"></a>`status_body`   | object                            | дополнительная информация о состоянии процесса бронирования
-<a name="rsf_request_id"></a>`request_id`   | string                            | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
+Name                                                | Type                                  | Description
+ ---                                                | ---                                   | ---
+<a name="f_state"></a>`state`                       | string                                | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`status`                     | string                                | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_booking"></a>`booking`                   | object                                | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+`booking.arrival_date`                              | (см.[`request.arrival_date`](#f_ds))  | same as
+`booking.departure_date`                            | (см.[`request.departure_date`](#f_de))|
+`booking.blocks[]`                                  | (см.[`request.blocks`](#f_blocks))    | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
+`booking.requisites`                                | (см.[`request.requisites`](#f_req)    | присутствуют только в случае если были переданы ранее
+`booking.conditions`                                | object                                | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
+`booking.conditions.booking_sum`                    | integer                               | общая сумма по бронированию по всем блокам
+`booking.conditions.cancellation`                   | integer                               | итоговый срок отмены
+`booking.conditions.[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
+`booking.conditions.[recovery_sum]`                 | integer                               |
+`booking.conditions.[payment_methods[]]`            | list                                  |
+`booking.conditions.[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+`booking.conditions.[payment_methods[]].type`       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+`booking.conditions.[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
+`booking.conditions.[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
+`booking.conditions.[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+<a name="f_status_body"></a>`status_body`           | object                                | дополнительная информация о состоянии процесса бронирования
+<a name="rsf_request_id"></a>`request_id`           | string                                | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
 
 
