@@ -72,10 +72,10 @@ Content
 
   Name | Type | Description
   ---                                                           | :---:             | --- | ---
-  `arrival_date`                                                | [date](#t_date)   | дата заезда
-  `departure_date`                                              | [date](#t_date)   | дата выезда
-  `blocks`                                                      | list              | список бронируемых объектов (комнат/тарифов). Кол-во номеров с одинаковым тарифом регулируется кол-вом блоков.
-  `blocks[].[id]`                                               | scalar            | любой уникальный id блока. если кол-во номеров с одинаковым тарифом больше одного. Если указан, то в ответе от сервера в параметре [`booking`](#f_booking) в блоках этот id так же будет присутствовать (не используется системой, может понадобится только для привязки для валидации)
+  `arrival_date`<a name="f_ds"></a>                             | [date](#t_date)   | дата заезда
+  `departure_date`<a name="f_de"></a>                           | [date](#t_date)   | дата выезда
+  `blocks`<a name="f_blocks"></a>                               | list              | список бронируемых объектов (комнат/тарифов). Кол-во номеров с одинаковым тарифом регулируется кол-вом блоков.
+  `blocks[].[id]`                                               | scalar            | любой уникальный id блока. Если указан, то в ответе от сервера в параметре [`booking`](#f_booking) в блоках этот id так же будет присутствовать (не используется системой, может понадобится только для привязки при валидации)
   `blocks[].tariff`                                             | string            |
   `blocks[].[conditions]`                                       | object            | объект с условиями бронирования `cancellation` и `booking_method`
   `blocks[].[conditions.cancellation]`                          | integer           | кол-во дней перед днем заезда после которого отмена не возможна
@@ -88,7 +88,7 @@ Content
   `blocks[].[living]`                                           | list              | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
   `blocks[].[living[]].first_name`                              | string            |  имя проживающего в блоке
   `blocks[].[living[].last_name]`                               | string            | фамилия проживающего в блоке
-  `requisites`                                                  | object            | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
+  `requisites`<a name="f_req"></a>                              | object            | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
   `requisites.first_name`                                       | string            | имя бронирующего
   `requisites.last_name`                                        | string            | фамилия бронирующего
   `requisites.email`                                            | string            | email адресс бронирующего
