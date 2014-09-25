@@ -76,7 +76,7 @@
   `requisites.last_name` | string | фамилия бронирующего
   `requisites.email` | string | email адресс бронирующего
   `requisites.phone` | string | телефон бронирующего
-  <a name="rqf_request_id"></a>[[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states))
+  <a name="rqf_request_id"></a>[[`request_id`](#request_id)] | string | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#states)), который был получен из поля ответа [`request_id`](#rsf_request_id)
   <a name="f_next_state"></a>[[`next_state`](#next_state)] | string | указатель следующей [стадии](#states) на которой желательно провести остановку
   <a name="f_accepted"></a>[[`accepted`](#accepted)] | mixed | идентификатор приятия данных по предварительно остановленному [`next_state`](#next_state) [состоянию](#states)
   <a name="f_payment_id"></a>`[payment_id]` | string | идентификатор оплаты
@@ -117,9 +117,9 @@
 В этом случае [`state`](#f_state) будет равен [`"prePayment"`](#state.prePayment) и в теле поля [`booking`](#f_booking) будет присутствовать секция `payment_methods` со списком возможных способов оплаты ([PaymentResource][#payment.resources]).
 В каждом из способов оплаты, помимо [типа](#payment_types) есть идентификатор (`payment_id`)[#payment_id].
 Тоесть приложение решает какие типы оплат оно поддерживает, дает (или не дает) клиенту выбор из этих типов оплат. Производит оплату, а затем делает повторный запрос с параметрами
-* [`accepted`]: true
-* [`payment_id`]: <payment_id> id типа оплаты, которая была произведена
-* [`request_id`]: <request_id> id нашего процесса бронирования
+* [`accepted`](#f_accepted): true
+* [`payment_id`](#f_payment_id): <payment_id> id типа оплаты, которая была произведена
+* [`request_id`](#rsf_request_id): <request_id> id нашего процесса бронирования
 
 
 
