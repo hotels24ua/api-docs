@@ -108,16 +108,16 @@ Content
 
 <a name="response.parameters"></a>
 ##### Параметры ответа
-Name                                                | Type                                  | Description
- ---                                                | ---                                   | ---
-<a name="f_state"></a>`state`                       | string                                | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status`                     | string                                | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
-<a name="f_booking"></a>`booking`                   | object                                | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
-`booking.arrival_date`                              | (см.[`request.arrival_date`](#f_ds))  | -//-
-`booking.departure_date`                            | (см.[`request.departure_date`](#f_de))| -//-
-`booking.blocks[]`                                  | (см.[`request.blocks`](#f_blocks))    | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
-`booking.requisites`                                | (см.[`request.requisites`](#f_req)    | присутствуют только в случае если были переданы ранее
-`booking.conditions`                                | object                                | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
+Name                                                | Type                      | Description
+ ---                                                | ---                       | ---
+<a name="f_state"></a>`state`                       | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`status`                     | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_booking"></a>`booking`                   | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
+`booking.arrival_date`                              | ([см.](#f_ds))            | -//-
+`booking.departure_date`                            | ([см.](#f_de))            | -//-
+`booking.blocks[]`                                  | ([см.](#f_blocks))        | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
+`booking.requisites`                                | ([см.](#f_req)            | присутствуют только в случае если были переданы ранее
+`booking.conditions`                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
 <sub>`booking.conditions.`</sub>`booking_sum`                    | integer                               | общая сумма по бронированию по всем блокам
 <sub>`booking.conditions.`</sub>`cancellation`                   | integer                               | итоговый срок отмены
 <sub>`booking.conditions.`</sub>`[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
