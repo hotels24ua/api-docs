@@ -177,6 +177,7 @@ Name | Description
                 "booking_sum" : 500,
                 "cancellation" : 3,
                 "booking_method" : 3,
+                "self_confirm": true,
                 "recoveries" : [
                     {
                         "unit" : "percent",
