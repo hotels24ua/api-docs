@@ -118,16 +118,16 @@ Name                                                | Type                      
 `booking.blocks[]`                                  | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
 `booking.requisites`                                | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
 `booking.conditions`                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
-<var>`booking.conditions.booking_sum`</var>                    | integer                               | общая сумма по бронированию по всем блокам
-<var>`booking.conditions.cancellation`</var>                   | integer                               | итоговый срок отмены
-<var>`booking.conditions.[recoveries[]]`</var>                | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
-<var>`booking.conditions.[recovery_sum]`</var>                 | integer                               |
-<var>`booking.conditions.[payment_methods[]]`</var>            | list                                  |
-<var>`booking.conditions.[payment_methods[]].id`</var>         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-<var>`booking.conditions.[payment_methods[]].type`</var>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
-<var>`booking.conditions.[payment_methods[]].rel`</var>        | string                                | абсолютный URL адресс для проведения оплаты
-<var>`booking.conditions.[payment_methods[]].rel_type`</var>   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
-<var>`booking.conditions.[payment_methods[]].title`</var>      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+`booking.conditions.booking_sum`                    | integer                               | общая сумма по бронированию по всем блокам
+`booking.conditions.cancellation`                   | integer                               | итоговый срок отмены
+`booking.conditions.[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
+`booking.conditions.[recovery_sum]`                 | integer                               |
+`booking.conditions.[payment_methods[]]`            | list                                  |
+`booking.conditions.[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+<pre>`booking.conditions.[payment_methods[]].type`</pre>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+`booking.conditions.[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
+`booking.conditions.[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
+`booking.conditions.[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 <a name="f_status_body"></a>`status_body`           | object                                | дополнительная информация о состоянии процесса бронирования
 <a name="rsf_request_id"></a>`request_id`           | string                                | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
