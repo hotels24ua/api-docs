@@ -115,19 +115,19 @@ Name                                                | Type                      
 <a name="f_booking"></a>`booking`                   | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
 ```booking.arrival_date```                              | ([same](#f_ds))           | -//-
 ```booking.departure_date```                            | ([same](#f_de))           | -//-
-<pre>booking.blocks[]</pre>                                  | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
-<pre>booking.requisites</pre>                                | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
-<pre>booking.conditions</pre>                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
-<pre>booking.conditions.booking_sum</pre>                    | integer                               | общая сумма по бронированию по всем блокам
-<pre>booking.conditions.cancellation</pre>                   | integer                               | итоговый срок отмены
-<pre>booking.conditions.[recoveries[]]<pre>                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
-<pre>booking.conditions.[recovery_sum]</pre>      | integer                               |
-<pre>booking.conditions.[payment_methods[]]</pre>            | list                                  |
-<pre>booking.conditions.[payment_methods[]].id</pre>         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-<pre>booking.conditions.[payment_methods[]].type</pre>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
-<pre>booking.conditions.[payment_methods[]].rel</pre>        | string                                | абсолютный URL адресс для проведения оплаты
-<pre>booking.conditions.[payment_methods[]].rel_type</pre>   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
-<pre>booking.conditions.[payment_methods[]].title</pre>      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+```booking.blocks[]```                                  | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
+```booking.requisites```                                | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
+```booking.conditions```                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
+```booking.conditions.booking_sum```                    | integer                               | общая сумма по бронированию по всем блокам
+```booking.conditions.cancellation```                   | integer                               | итоговый срок отмены
+```booking.conditions.[recoveries[]]```                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
+```booking.conditions.[recovery_sum]```      | integer                               |
+```booking.conditions.[payment_methods[]]```            | list                                  |
+```booking.conditions.[payment_methods[]].id```         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
+```booking.conditions.[payment_methods[]].type```       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+```booking.conditions.[payment_methods[]].rel```        | string                                | абсолютный URL адресс для проведения оплаты
+```booking.conditions.[payment_methods[]].rel_type```   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
+```booking.conditions.[payment_methods[]].title```      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 <a name="f_status_body"></a>`status_body`           | object                                | дополнительная информация о состоянии процесса бронирования
 <a name="rsf_request_id"></a>`request_id`           | string                                | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
 
