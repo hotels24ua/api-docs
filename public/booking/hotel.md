@@ -125,7 +125,7 @@ Name                                                | Type                      
 `booking.conditions.[payment_methods[]]`            | list                                  | список объектов - ресурсов (типов) оплат возможных для данного бронирования. если бронирование не требует предоплат, то этот элемент будет отсутствовать
 `booking.conditions.[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
 `booking.conditions`
-<a color="#eee">[payment_methods[]].type</div>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+<a color="#eee">[payment_methods[]].type</a>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
 `booking.conditions.[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
 `booking.conditions.[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
 `booking.conditions.[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
