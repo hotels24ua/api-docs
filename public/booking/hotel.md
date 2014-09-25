@@ -120,11 +120,12 @@ Name                                                | Type                      
 `booking.conditions`                                | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
 `booking.conditions.booking_sum`                    | integer                               | общая сумма по бронированию по всем блокам
 `booking.conditions.cancellation`                   | integer                               | итоговый срок отмены
-`booking.conditions.[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery))
-`booking.conditions.[recovery_sum]`      | integer                               |
-`booking.conditions.[payment_methods[]]`            | list                                  |
+`booking.conditions.[recoveries[]]`                 | [[recovery](#f_recovery)]             | список всех предоплат со всех номеров каждый (структура повторяет [`recovery`](#f_recovery)) может отсутствовать, если бронирование не предпологает предоплаты в этот отель
+`booking.conditions.[recovery_sum]`      | integer                               | общая сумма по предоплатам. так же может отсутствовать если бронирование не требует предоплат
+`booking.conditions.[payment_methods[]]`            | list                                  | список объектов - ресурсов (типов) оплат возможных для данного бронирования. если бронирование не требует предоплат, то этот элемент будет отсутствовать
 `booking.conditions.[payment_methods[]].id`         | string                                | идентификатор ресурса (используется для проверки состояния оплаты) уникален для каждого бронирования
-`booking.conditions.[payment_methods[]].type`       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
+`booking.conditions`
+<div align="right">`[payment_methods[]].type`</div>       | integer                               | константа типа оплаты. см [Константы Типов Оплат](#const.payment_types)
 `booking.conditions.[payment_methods[]].rel`        | string                                | абсолютный URL адресс для проведения оплаты
 `booking.conditions.[payment_methods[]].rel_type`   | string                                | тип ресурса может быть `iframe`, `link`, `file`, `html`
 `booking.conditions.[payment_methods[]].title`      | string                                | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
