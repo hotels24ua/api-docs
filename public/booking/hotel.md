@@ -33,8 +33,9 @@ Content
 -------------------------
 
 ####Специальные обозначения
-#####Обозначения параметров
 <a name="parameters.desc"></a>
+#####Обозначения параметров
+
 Пример                                          | Описание
 ---                                             | ---
 `parameter`                                     | обычный обязательный параметр
@@ -48,8 +49,9 @@ Content
 `parameter[].itemProperty`                      | параметр является списком объектов с обязательными свойствами `itemProperty`
 `parameter[].[itemProperty2]`                   | параметр является списком объектов с опциональными свойствами `itemProperty`
 
-#####Обозначения типов данных
 <a name="types.desc"></a>
+#####Обозначения типов данных
+
 Обозначение                 | Варианты использования        | Описание
 ---                         | ---                           | ---
 `boolean`                   | `boolean`, `bool`             | `true`, `false`, `1`, `0` , `"yes"`, `"no"`
@@ -70,8 +72,9 @@ Content
 * `application/json` - json encoded post body
 * `application/x-www-form-urlencoded` - url encoded
 
-#### Параметры запроса (Request Parameters)
 <a name="request.parameters"></a>
+#### Параметры запроса (Request Parameters)
+
   Name | Type | Description
   ---                                                           | :---:             | --- | ---
   `arrival_date`<a name="f_ds"></a>                             | [date](#t_date)   | дата заезда
