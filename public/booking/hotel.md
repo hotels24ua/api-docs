@@ -227,66 +227,72 @@ Code    | Constant Name | Description
 
 ####Examples
 
-#####Response Examples
-
+#####Case 1
+######Request
+```JSON
+{
+    "arrival_date": "2014-11-25",
+    "departure_date": "2014-11-26",
+    "blocks": [
+        {
+            "id": "1",
+            "tariff": "5425476b6b06784d498b4567",
+            "total_cost": 400,
+            "living": [],
+            "conditions": {"cancellation": 1001, "booking_method": 3}
+        },
+        {
+            "id": "2",
+            "tariff": "5425476b6b06784d498b4567",
+            "total_cost": 400,
+            "living": [],
+            "conditions": {"cancellation": 1001, "booking_method": 3}
+        }
+    ],
+    "requisites": {
+        "fist_name": "TestFirstName",
+        "last_name": "TestLastName",
+        "email": "test.email@hotels24.ua",
+        "phone": "+3805555555"
+    }
+}
+```
 ######Response OK
 <a name="response_example1"></a>
-```json
+```JSON
 {
-    "ok" : 1,
-    "data" : {
-        "state" : "complete",
-        "booking" : {
-            "arrival_date" : "2014-09-23",
-            "departure_date" : "2014-09-24",
-            "blocks" : [
-                {
-                    "tariff" :  "507f1f77bcf86cd799439011",
-                    "total_cost" : 500,
-                    "conditions" : {
-                        "cancellation" : 3,
-                        "booking_method" : 1
-                    },
-                    "recovery" : {
-                        "unit" : "percent",
-                        "amount" : 10,
-                        "sum" : 50
-                    },
-                    "living" : [
-                        {
-                            "first_name" : "Booker",
-                            "last_name" : "Da Mega"
-                        }
-                    ]
-                }
-            ],
-            "requisites" : {
-                "first_name" : "Booker",
-                "last_name" : "Da Mega",
-                "email" : "mega.booker@hotels24.ua",
-                "phone" : "0800210017"
+    "state": "complete",
+    "status": "ok",
+    "booking": {
+        "conditions": {"booking_sum": 800, "cancellation": 1001},
+        "arrival_date": "2014-11-25",
+        "departure_date": "2014-11-26",
+        "blocks": [
+            {
+                "id": "1",
+                "tariff": "5425476b6b06784d498b4567",
+                "total_cost": 400,
+                "living": [],
+                "conditions": {"cancellation": 1001, "booking_method": 3}
             },
-            "general_conditions" : {
-                "booking_sum" : 500,
-                "cancellation" : 3,
-                "booking_method" : 3,
-                "recoveries" : [
-                    {
-                        "unit" : "percent",
-                        "amount" : 10,
-                        "sum" : 50
-                    }
-                ],
-                "recovery_sum" : 50
-            },
-        },
-        "status" : "ok",
-        "status_body" : {},
-        "request_id" : "60ef1a77fcf86cd791434021"
+            {
+                "id": "2",
+                "tariff": "5425476b6b06784d498b4567",
+                "total_cost": 400,
+                "living": [],
+                "conditions": {"cancellation": 1001, "booking_method": 3}
+            }
+        ],
+        "requisites": {
+            "fist_name": "TestFirstName",
+            "last_name": "TestLastName",
+            "email": "test.email@hotels24.ua",
+            "phone": "+3805555555"
+        }
     },
-    "msg" : "ok",
-    "code" : 200
+    "request_id": "5425476b6b06784d498b456a"
 }
+
 ```
 
 
