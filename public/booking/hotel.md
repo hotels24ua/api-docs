@@ -264,7 +264,7 @@ Code    | Constant Name | Description
     "state": "complete",
     "status": "ok",
     "booking": {
-        "conditions": {"booking_sum": 800, "cancellation": 1001},
+        "conditions": {"booking_sum": 800, "cancellation": 1001, "booking_method": 3},
         "arrival_date": "2014-11-25",
         "departure_date": "2014-11-26",
         "blocks": [
