@@ -68,9 +68,8 @@ Content
 --------------------------------------
 <a name="request"></a>
 ### Запрос бронирования (Request)
-Запрос принимает данные в форматах:
-* `application/json` - json encoded post body
-* `application/x-www-form-urlencoded` - url encoded
+Запрос принимает данные в форматe: `application/x-www-form-urlencoded` 
+Единственный параметр запроса это `request` который является сериализированной json строкой. Структура json объекта описана ниже.
 
 <a name="request.parameters"></a>
 #### Параметры запроса (Request Parameters)
