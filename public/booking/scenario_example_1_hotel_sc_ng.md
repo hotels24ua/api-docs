@@ -1,4 +1,4 @@
-#Hotel Booking case #1
+#Hotel Booking scenaria example #1
 > Full booking with one shot request.
 
 ##Pre Settings
