@@ -120,6 +120,7 @@ Name                                                                    | Type  
 <a name="f_booking"></a>`booking`                                       | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
 `booking.arrival_date`                                                  | ([same](#f_ds))           | -//-
 `booking.departure_date`                                                | ([same](#f_de))           | -//-
+`booking.hotel`                                                         | integer                   | id бронируемого отеля
 `booking.blocks[]`                                                      | ([same](#f_blocks))       | в все поля в блоках, в том числе `conditions` и `recovery` будут присутствовать обязательно и отображать реальные данные в базе
 `booking.requisites`                                                    | ([same](#f_req))          | присутствуют только в случае если были переданы ранее
 `booking.conditions`                                                    | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#f_general_conditions]
