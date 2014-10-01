@@ -115,8 +115,8 @@ Content
 ##### Параметры ответа
 Name                                                                    | Type                      | Description
  ---                                                                    | ---                       | ---
-<a name="f_state"></a>`state`                                           | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
-<a name="f_status"></a>`status`                                         | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
+<a name="f_state"></a>`state.type`                                           | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
+<a name="f_status"></a>`state.status`                                         | string                    | идентификатор состояния бронирования текущей [`state`](#f_state) см. [Response State Statuses](#response.statuses)
 <a name="f_booking"></a>`booking`                                       | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`next_state`](#f_next_state),[`accepted`](#accepted))
 `booking.arrival_date`                                                  | ([same](#f_ds))           | -//-
 `booking.departure_date`                                                | ([same](#f_de))           | -//-
@@ -262,13 +262,15 @@ Code    | Constant Name | Description
 <a name="response_example1"></a>
 ```JSON
 {
-    "state": "complete",
-    "status": "ok",
-    "booking": {
-        "conditions": {"booking_sum": 800, "cancellation": 1001, "booking_method": 3},
-        "arrival_date": "2014-11-25",
-        "departure_date": "2014-11-26",
-        "blocks": [
+   "state": { 
+      "type": "complete",
+      "status": "ok"
+   },
+   "booking": {
+         "conditions": {"booking_sum": 800, "cancellation": 1001, "booking_method": 3},
+         "arrival_date": "2014-11-25",
+         "departure_date": "2014-11-26",
+         "blocks": [
             {
                 "id": "1",
                 "tariff": "5425476b6b06784d498b4567",
