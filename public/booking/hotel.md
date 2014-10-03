@@ -201,6 +201,7 @@ State Status                                        | Description
 * [`requestId`](#rsfRequestId): <requestId> id нашего процесса бронирования
 
 
+
 #### Константы
 <a name="const.paymentTypes"></a>
 ##### Константы Типов Оплат
