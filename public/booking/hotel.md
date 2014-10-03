@@ -9,12 +9,12 @@
 Content
 * Общее описание
 * Специальные обозначения
-    * (Параметры)[#parameters.desc]
-    * (Типы данных)[#types.desc]
-* (Запрос бронирования)[#request]
-    * (Параметры запроса)[#request.parameters]
-* (Ответы от сервера)[#response]
-    * (Параметры ответа)[#response.parameters]
+    * [Параметры](#parameters.desc)
+    * [Типы данных]([#types.desc)
+* [Запрос бронирования](#request)
+    * [Параметры запроса](#request.parameters)
+* [Ответы от сервера](#response)
+    * [Параметры ответа](#response.parameters)
 
 
 
