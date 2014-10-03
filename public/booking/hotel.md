@@ -99,7 +99,7 @@ Content
   `requisites.phone`                                            | string            | телефон бронирующего
   [[`requestId`](#requestId)]<a name="rqfRequestId"></a>    | string            | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`requestId`](#rsfRequestId)
   [[`nextState`](#fNextState)]<a name="fNextState"></a>    | string            | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
-  [[`accepted`](#accepted)]<a name="fAccepted"></a>            | mixed             | идентификатор приятия данных по предварительно остановленному [`nextState`](#fNextState) [состоянию](#booking.states)
+  [[`continue`](#continue)]<a name="fContinue"></a>            | mixed             | идентификатор приятия данных по предварительно остановленному [`nextState`](#fNextState) [состоянию](#booking.states)
   `[paymentId]`<a name="fPaymentId"></a>                     | string            | идентификатор оплаты
 
 <a name="response"></a>
@@ -117,7 +117,7 @@ Name                                                                    | Type  
  ---                                                                    | ---                       | ---
 <a name="fState"></a>`state.type`                                           | string                    | стадия бронирования на которой была завершена обработка запроса (см. [стадии](#booking.states))
 <a name="fStatus"></a>`state.status`                                         | string                    | идентификатор состояния бронирования текущей [`state`](#fState) см. [Response State Statuses](#response.statuses)
-<a name="fBooking"></a>`booking`                                       | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`nextState`](#fNextState),[`accepted`](#accepted))
+<a name="fBooking"></a>`booking`                                       | object                    | объект с набором текущих свойств бронирования. Соответствует телу полного запроса (включая опциональные параметры для каждого блока) и с дополнительными полями `conditions` где указаны общие условия по всем блокам бронирования. В остальном данные такие же как в запросе за исключением управляющих директив ([`nextState`](#fNextState),[`continue`](#continue))
 `booking.arrivalDate`                                                  | ([same](#fDs))           | -//-
 `booking.departureDate`                                                | ([same](#fDe))           | -//-
 `booking.hotel`                                                         | integer                   | id бронируемого отеля
