@@ -92,7 +92,7 @@ Content
   `blocks[].[living]`                                           | list              | список проживающих в конкретном номере (В случае, если проживающие не указаны, будет выбран тот, который указан в поле [`requisites`](#requisites))
   `blocks[].[living[]].firstName`                              | string            |  имя проживающего в блоке
   `blocks[].[living[].lastName]`                               | string            | фамилия проживающего в блоке
-  `requisites`<a name="fReq"></a>                              | object            | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"preRequisites"`](#state.preRequisites))
+  `requisites`<a name="fReq"></a>                              | object            | объект реквизитов бронирующего клиента (обязателен для завершения стадии [`"requisites"`](#state.requisites))
   `requisites.firstName`                                       | string            | имя бронирующего
   `requisites.lastName`                                        | string            | фамилия бронирующего
   `requisites.email`                                            | string            | email адресс бронирующего
@@ -135,7 +135,7 @@ Name                                                                    | Type  
 `booking.conditions.[paymentMethods[]].relType`                       | string                    | тип ресурса может быть `iframe`, `link`, `file`, `html`
 `booking.conditions.[paymentMethods[]].title`                          | string                    | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 `statusBody`<a name="fStatusBody"></a>                               | object                    | дополнительная информация о состоянии процесса бронирования
-`requestId`<a name="rsfRequestId"></a>                               | string                    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с postConditions
+`requestId`<a name="rsfRequestId"></a>                               | string                    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с `conditions`
 
 
 
@@ -144,12 +144,9 @@ Name                                                                    | Type  
 
 Name                                                  | Description
  ---                                                  | ---
-`"preConditions"`<a name="state.preConditions"></a>   | этап без идентификатора брони. Может быть использован параметром [`nextState`](#fNextState) только для проверки доступности брони по переданным данным.
-`"postConditions"`<a name="state.postConditions"></a> | демонстрация сложившихся условий бронирования
-`"preRequisites"`<a name="state.preRequisites"></a>   | ожидание ввода реквизитов
-`"postRequisites"`<a name="state.postRequisites"></a> | демонстрация введенных реквизитов для подтверждения ... состояния касающиеся оплат
-`"prePayment"`<a name="state.prePayment"></a>         | перед оплатой. отсутствовует если бронирование предполагает расчет в отеле
-`"postPayment"`<a name="state.postPayment"></a>       | после оплаты. отсутствовует если бронирование предполагает расчет в отеле
+`"conditions"`<a name="state.conditions"></a>   | этап без идентификатора брони. Может быть использован параметром [`nextState`](#fNextState) только для проверки доступности брони по переданным данным.
+`"requisites"`<a name="state.requisites"></a>   | ожидание ввода реквизитов
+`"payment"`<a name="state.payment"></a>         | перед оплатой. отсутствовует если бронирование предполагает расчет в отеле
 `"complete"`<a name="state.complete"></a>             | бронирование завершено
 
 <a name="response.statuses"></a>
@@ -181,7 +178,7 @@ State Status                                        | Description
 Поле [`continue`](#fContinue) используется для продолжения бронирования с определенной стадии.
 
 **Пример 1**:  приложению нужно продемонстрировать всю информацию по оформляемому бронированию клиенту и провести своеобразное подтверждение бронирования.
-В этом случае приложение инициирует остановку процесса на стадиях [`postConditions`](#state.postConditions) или [`postRequisites`](#state.postRequisites),
+В этом случае приложение инициирует остановку процесса на стадиях [`conditions`](#state.conditions) или [`requisites`](#state.requisites),
 Тогда, помимо других необходимых для бронирования данных, в запросе отправляется еще идентификатор остановки [`nextState`](#fNextState) с указаной желаемой [стадией](#booking.states).
 Если данные валидны процес остановится на указаной стадии и будет возвращен результат с полями:
  * [`state`](#fState): "запрашиваемая стадия",
@@ -196,7 +193,7 @@ State Status                                        | Description
 Здесь в ответе от сервера будет указана [стадия](#fState) со статусом ([`status`](#fStatus)) равным [`"requirements"`](#status.requirements).
 К примеру, все стадии по бронированию (условия и реквизиты) были пройдены, но для завершения требуется произвести оплату.
 
-В этом случае [`state`](#fState) будет равен [`"prePayment"`](#state.prePayment) и в теле поля [`booking`](#fBooking) будет присутствовать секция `paymentMethods` со списком возможных способов оплаты ([PaymentResource][#payment.resources]).
+В этом случае [`state`](#fState) будет равен [`"payment"`](#state.payment) и в теле поля [`booking`](#fBooking) будет присутствовать секция `paymentMethods` со списком возможных способов оплаты ([PaymentResource][#payment.resources]).
 В каждом из способов оплаты, помимо [типа](#pType) есть идентификатор (`paymentId`)[#paymentId].
 Тоесть ваше приложение выбирает из списка какие типы оплат оно поддерживает, дает (или не дает) клиенту выбор из этих типов оплат. Производит оплату, а затем делает повторный запрос с параметрами
 * [`continue`](#fContinue): true
