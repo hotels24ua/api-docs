@@ -216,7 +216,7 @@ State Status                                        | Description
  PAY_SEND_CARD_URL      | 854   | ...
  PAY_SEND_CARD_POST     | 852   | ...
 
-
+<a name="error_codes"><a>
 ##### Коды ошибок (Error Codes)
 Code    | Constant Name | Description
  ---    | ---           | ---
@@ -224,7 +224,7 @@ Code    | Constant Name | Description
 
 
 
-<a name="error_codes"><a>
+
 
 ####Examples
 
