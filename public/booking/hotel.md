@@ -76,8 +76,8 @@ Content
 
   Name | Type | Description
   ---                                                           | :---:             | --- | ---
-  `arrivalDate`<a name="fDs"></a>                               | [date](#tDate)   | дата заезда
-  `departureDate`<a name="fDe"></a>                             | [date](#tDate)   | дата выезда
+  `arrivalDate`<a name="fDs"></a>                               | [date](#tDate)    | дата заезда
+  `departureDate`<a name="fDe"></a>                             | [date](#tDate)    | дата выезда
   `blocks`<a name="fBlocks"></a>                                | list              | список бронируемых объектов (комнат/тарифов). Кол-во номеров с одинаковым тарифом регулируется кол-вом блоков.
   `blocks[].[id]`                                               | string            | любой уникальный id блока. Если указан, то в ответе от сервера в параметре [`booking`](#fBooking) в блоках этот id так же будет присутствовать (не используется системой, может понадобится только для привязки при валидации)
   `blocks[].tariff`                                             | string            |
@@ -218,10 +218,13 @@ State Status                                        | Description
 
 <a name="errorCodes"><a>
 ##### Коды ошибок (Error Codes)
-Code    | Constant Name | Description
- ---    | ---           | ---
-31415   | PI            | Все плохо
-
+Code    | Constant Name                     | Description
+ ---    | ---                               | ---
+31415   | PI                                | Все плохо
+1401    | FIELD_COULD_NOT_BE_EMPTY          | -//-
+1406    | FIELD_INVALID_FORMAT              | -//-
+1403    | FIELD_DIFFERS_FROM_ORIGIN         | rejection error. has to have origin property in response=>booking
+1404    | FIELD_CONTAINS_MISSED_REFERENCE   | failure error. reference which represents this field is not exists
 
 
 
