@@ -220,7 +220,7 @@ State Status                                        | Description
 ##### Коды ошибок (Error Codes)
 Code    | Constant Name                     | Description
  ---    | ---                               | ---
-31415   | PI                                | Все плохо
+31415   | PI                                | Все плохо. На все случаи жизни.
 1401    | FIELD_COULD_NOT_BE_EMPTY          | -//-
 1406    | FIELD_INVALID_FORMAT              | -//-
 1403    | FIELD_DIFFERS_FROM_ORIGIN         | rejection error. has to have origin property in response=>booking
