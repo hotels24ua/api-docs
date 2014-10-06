@@ -218,13 +218,14 @@ State Status                                        | Description
 
 <a name="errorCodes"><a>
 ##### Коды ошибок (Error Codes)
-Code    | Constant Name                     | Description
- ---    | ---                               | ---
-31415   | PI                                | Все плохо. На все случаи жизни.
-1401    | FIELD_COULD_NOT_BE_EMPTY          | -//-
-1406    | FIELD_INVALID_FORMAT              | -//-
-1403    | FIELD_DIFFERS_FROM_ORIGIN         | rejection error. has to have origin property in response=>booking
-1404    | FIELD_CONTAINS_MISSED_REFERENCE   | failure error. reference which represents this field is not exists
+Code    | Constant Name                         | Description
+ ---    | ---                                   | ---
+31415   | PI                                    | Все плохо. На все случаи жизни.
+1401    | FIELD_COULD_NOT_BE_EMPTY              | -//-
+14015   | FIELD_COULD_BE_OMITTED_OR_FULFILLED   | optional fields with non optional properties must be omitted or fulfilled with its requirements
+1406    | FIELD_INVALID_FORMAT                  | -//-
+1403    | FIELD_DIFFERS_FROM_ORIGIN             | rejection error. has to have origin property in response=>booking
+1404    | FIELD_CONTAINS_MISSED_REFERENCE       | failure error. reference which represents this field is not exists
 
 
 
