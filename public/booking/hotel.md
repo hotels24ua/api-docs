@@ -114,7 +114,6 @@ Content
 
 <a name="response.statuses"></a>
 ####Response Parameters
-
 [response example](#responseExample1) - пример ответа
 
 <a name="response.parameters"></a>
