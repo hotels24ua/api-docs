@@ -212,6 +212,7 @@ State Status                                        | Description
 
 #### Константы
 <a name="const.paymentTypes"></a>
+
 ##### Константы Типов Оплат
  NAME                   | Value | Description
  ---                    | ---   | ---
@@ -225,6 +226,7 @@ State Status                                        | Description
 
 ##### Коды ошибок (Error Codes)
 <a name="errorCodes"><a>
+
 Code    | Constant Name                         | Description
  ---    | ---                                   | ---
 31415   | PI                                    | Все плохо. На все случаи жизни.
