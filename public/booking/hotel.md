@@ -8,13 +8,16 @@
 
 Content
 * Общее описание
-* Специальные обозначения
+* [Специальные обозначения](#special.notation)
     * [Параметры](#parameters.desc)
     * [Типы данных]([#types.desc)
 * [Запрос бронирования](#request)
     * [Параметры запроса](#request.parameters)
 * [Ответы от сервера](#response)
     * [Параметры ответа](#response.parameters)
+* [Booking Methods (Booking Types)](#bookingMethods)
+* [Коды ошибок](#errorCodes)
+* [Examples](#examples)
 
 
 
@@ -33,6 +36,7 @@ Content
 -------------------------
 
 ####Специальные обозначения
+<a name="special.notation"></a>
 <a name="parameters.desc"></a>
 #####Обозначения параметров
 
@@ -219,8 +223,9 @@ State Status                                        | Description
  PAY_SEND_CARD_URL      | 854   | ...
  PAY_SEND_CARD_POST     | 852   | ...
 
-<a name="errorCodes"><a>
+
 ##### Коды ошибок (Error Codes)
+<a name="errorCodes"><a>
 Code    | Constant Name                         | Description
  ---    | ---                                   | ---
 31415   | PI                                    | Все плохо. На все случаи жизни.
@@ -241,6 +246,7 @@ Constant    | Constant Name | Description
 
 
 ####Examples
+<a name="examples"></a>
 
 #####Case 1
 ######Request
@@ -274,6 +280,7 @@ Constant    | Constant Name | Description
 ```
 ######Response OK
 <a name="responseExample1"></a>
+
 ```JSON
 {
    "state": { 
