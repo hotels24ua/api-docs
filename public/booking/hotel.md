@@ -291,6 +291,7 @@ Code    | Constant Name                         | Description
                 "conditions": {"cancellation": 1001, "bookingMethod": 3}
             }
         ],
+        "bookingId": 654654,
         "requisites": {
             "fistName": "TestFirstName",
             "lastName": "TestLastName",
