@@ -103,9 +103,9 @@ Content
   `requisites.lastName`                                         | string            | фамилия бронирующего
   `requisites.email`                                            | string            | email адресс бронирующего
   `requisites.phone`                                            | string            | телефон бронирующего
-  [[`requestId`](#requestId)]<a name="rqfRequestId"></a>        | string            | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`requestId`](#rsfRequestId)
+  [[`requestId`](#rsfRequestId)]<a name="rqfRequestId"></a>     | string            | идентификатор запроса (в случае продолжения бронирования с определенной [стадии](#booking.states)), который был получен из поля ответа [`requestId`](#rsfRequestId)
   [[`nextState`](#fNextState)]<a name="fNextState"></a>         | string            | указатель следующей [стадии](#booking.states) на которой желательно провести остановку
-  [[`continue`](#continue)]<a name="fContinue"></a>             | mixed             | идентификатор приятия данных по предварительно остановленному [`nextState`](#fNextState) [состоянию](#booking.states)
+  [[`continue`](#request.continue)]<a name="fContinue"></a>     | mixed             | идентификатор приятия данных по предварительно остановленному [`nextState`](#fNextState) [состоянию](#booking.states)
   `[paymentId]`<a name="fPaymentId"></a>                        | string            | идентификатор оплаты
 
 <a name="response"></a>
@@ -193,7 +193,7 @@ State Status                                        | Description
  * [`state.type`](#fState): "запрашиваемая стадия",
  * [`state.status`](#fStatus): ["ok"](#status.ok)
  * [`booking`](#fBooking) : предварительная калькуляция, которая может быть продемонстрирована клиенту.
- * [`requestId`](#rsfRequestId) : сгенерированный идентификатор текущего запроса бронирования.
+ * [`requestId`](#rsfRequestId)<a name=""></a> : сгенерированный идентификатор текущего запроса бронирования.
 
 Далее приложение подтверждает бронирование. Для этого используется всего два поля в запросе: [`requestId`](#rfRequestId) и [`continue`](#fContinue) со значением `true`
 
