@@ -230,13 +230,14 @@ Code    | Constant Name                         | Description
 1403    | FIELD_DIFFERS_FROM_ORIGIN             | rejection error. has to have origin property in response=>booking
 1404    | FIELD_CONTAINS_MISSED_REFERENCE       | failure error. reference which represents this field is not exists
 
-Booking Types (Booking Methods)
+####Booking Types (Booking Methods)
 <a name="bookingMethods"></a>
-Constant   | Constant Name | Description
---- | --- | ---
-0  | INVOICE | Бронирование по предоплате
-3  | NO_GUARANTEES | Бронирование без финансовой гарантии (оплата в отеле)
-4  | SEND_CARD | Передача данных кридитной карточки в отель
+
+Constant    | Constant Name | Description
+ ---        | ---           | ---
+0           | INVOICE       | Бронирование по предоплате
+3           | NO_GUARANTEES | Бронирование без финансовой гарантии (оплата в отеле)
+4           | SEND_CARD     | Передача данных кридитной карточки в отель
 
 
 ####Examples
