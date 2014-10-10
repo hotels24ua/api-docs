@@ -128,6 +128,8 @@ Name                                                                    | Type  
 `booking.conditions`                                                    | object                    | общая калькуляция условий бронирования см (общие условия бронирования)[#fGeneralConditions]
 `booking.conditions.bookingSum`                                         | integer                   | общая сумма по бронированию по всем блокам
 `booking.conditions.cancellation`                                       | integer                   | итоговый срок отмены
+`booking.conditions.bookingMethod`                                      | integer                  | Тип (метод) бронирования, который был установлен для текущего заказа/брони (один из [методов бронирования](#bookingMethods))
+`booking.conditions.selfConfirm`                                        | boolean | Флаг автоподтверждения. Подтверждает ли отель автоматически бронирование или бронирование будет обработано оператором `true` или `false`
 `booking.conditions.[recoveries[]]`                                     | [[recovery](#fRecovery)] | список всех предоплат со всех номеров (структура повторяет [`recovery`](#fRecovery)). Может отсутствовать, если бронирование не предпологает предоплаты в этот отель
 `booking.conditions.[recoverySum]`                                      | integer                   | общая сумма по предоплатам. так же может отсутствовать если бронирование не требует предоплат
 `booking.conditions.[paymentMethods[]]`<a name="payment.resources"></a> | list                      | список объектов - ресурсов (типов) оплат возможных для данного бронирования. если бронирование не требует предоплат, то этот элемент будет отсутствовать
@@ -228,7 +230,13 @@ Code    | Constant Name                         | Description
 1403    | FIELD_DIFFERS_FROM_ORIGIN             | rejection error. has to have origin property in response=>booking
 1404    | FIELD_CONTAINS_MISSED_REFERENCE       | failure error. reference which represents this field is not exists
 
-
+Booking Types (Booking Methods)
+<a name="bookingMethods"></a>
+Constant   | Constant Name | Description
+--- | --- | ---
+0  | INVOICE | Бронирование по предоплате
+3  | NO_GUARANTEES | Бронирование без финансовой гарантии (оплата в отеле)
+4  | SEND_CARD | Передача данных кридитной карточки в отель
 
 
 ####Examples
