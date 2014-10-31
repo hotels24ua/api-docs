@@ -140,7 +140,7 @@ Name                                                                    | Type  
 `booking.conditions.[paymentMethods[]].type`<a name="pType"></a>        | integer                   | константа типа оплаты. см [Константы Типов Оплат](#const.paymentTypes)
 `booking.conditions.[paymentMethods[]].rel`                             | string                    | абсолютный URL адресс для проведения оплаты
 `booking.conditions.[paymentMethods[]].relType`                         | string                    | тип ресурса может быть `iframe`, `link`, `file`, `html`
-`booking.conditions.[paymentMethods[]].title`                           | string                    | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
+`booking.conditions.[paymentMethods[]].title`<a name="b.c.pm.t"></a>                           | string                    | человекопонятное описание способа оплаты напр. `"Оплата по счету-фактуре"`
 `bookingId`                                                             | integer                   | ID бронирования. В случае успешного завершения. Может присутствовать начиная с [`requisites`](#state.requisites) стадии
 `statusBody`<a name="fStatusBody"></a>                                  | object                    | дополнительная информация о состоянии процесса бронирования
 `requestId`<a name="rsfRequestId"></a>                                  | string                    | идентификатор запроса для того чтобы повторно не отправлять весь блок данных, а только тот, который необходим для текущей стадии или с параметром запроса accept. Необходим в запросах для стадий начиная с `conditions`
