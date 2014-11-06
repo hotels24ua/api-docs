@@ -183,7 +183,7 @@ Field               |   Description
 `hasClientPayments` | boolean
 `invoiceAvailable`  | boolean   
 `invoiceHtmlUrl`    | url string
-`voucherAvailabl`   | boolean
+`voucherAvailable`  | boolean
 `voucherHtmlUrl`    | url string
 
 ### Процесс бронирования (Request Flow)
