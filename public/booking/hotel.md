@@ -167,6 +167,23 @@ State Status                                        | Description
 `"error"`<a name="status.error"></a>                | ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
 `"ok"`<a name="status.ok"></a>                      | все хорошо. к состоянию пришли успешно
 
+<a name="response.status.body></a>
+##### Response Status Body
+ Поле [`statusBody`](#fStatusBody) в ответе предназначено для дополнительной информации о бронировании на определенных стадиях или состояниях.
+В случае с статусами ([status](#response.status)) отличными от [`ok`](#status.ok) обычно отдаются причины ошибок, поля с ошибками или пустое поле.
+В случае со стадией [`complete`](#state.complete) и статусом [`ok`](#status.ok) - будет передана дополнительная информация о бронировании от провайдера (сервиса, который занимается непосредственно бронированием).
+###### CRM PROVIDER BOOKING STATUS BODY
+Field               |   Description
+---                 |   ---
+`callStatus`        | состояние обращения (`open`, `closed`, `inProgress`, )     
+`bookingStatus`     | `bookingSubmit` \| `notConfirmOral` \|  `cancelOral` \| `invoiceSend` \| `clientPay` \| `notConfirmed` \| `cancel` \| `waitPayment` (так же возможны другие статусы. но они здесь не используются)
+`hasBills`          | есть ли выставленные счета в текущем бронировании (boolaean)
+`paymentType`       | `invoice` \| `cardPay` \| `cardTransfer` \| `interkassa` \| `unknown`
+`hasClientPayments` | boolean
+`invoiceAvailable`  | boolean   
+`invoiceHtmlUrl`    | url string
+`voucherAvailabl`   | boolean
+`voucherHtmlUrl`    | url string
 
 ### Процесс бронирования (Request Flow)
 #### Опциональные условия бронирования и ошибки при запросе
@@ -216,7 +233,8 @@ State Status                                        | Description
 ##### Константы Типов Оплат
  NAME                   | Value | Description
  ---                    | ---   | ---
- PAY_INVOICE_HTML       | 810   | Счет фактура тут
+ PAY_INVOICE_HTML       | 810   | Счет фактура. Ссылка на её html
+ PAY_INVOICE_POST       | 812   | Счет фактура. Ссылка на action постом. Дополнительно принимается redirect аргумент (куда перенаправлять после успешного поста).
  PAY_CARD_URL           | 844   | ...
  PAY_CARD_IFRAME        | 843   | ...
  PAY_SEND_CARD_IFRAME   | 853   | ...
