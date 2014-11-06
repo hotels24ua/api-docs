@@ -175,7 +175,7 @@ State Status                                        | Description
 ###### CRM PROVIDER BOOKING STATUS BODY
 Field               |   Description
 ---                 |   ---
-`callStatus`        | состояние обращения (`open`, `closed`, `inProgress`, )     
+`callStatus`        | состояние обращения (`open`, `closed`, `inProgress`, `none`, `new`)     
 `bookingStatus`     | `bookingSubmit` \| `notConfirmOral` \|  `cancelOral` \| `invoiceSend` \| `clientPay` \| `notConfirmed` \| `cancel` \| `waitPayment` (так же возможны другие статусы. но они здесь не используются)
 `hasBills`          | есть ли выставленные счета в текущем бронировании (boolaean)
 `paymentType`       | `invoice` \| `cardPay` \| `cardTransfer` \| `interkassa` \| `unknown`
