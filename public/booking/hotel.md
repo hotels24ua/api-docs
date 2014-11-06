@@ -7,7 +7,7 @@
 
 
 Content
-* Общее описание
+* [Общее описание](#overall)
 * [Специальные обозначения](#special.notation)
     * [Параметры](#parameters.desc)
     * [Типы данных]([#types.desc)
@@ -15,13 +15,14 @@ Content
     * [Параметры запроса](#request.parameters)
 * [Ответы от сервера](#response)
     * [Параметры ответа](#response.parameters)
+    * [Response Status body](#response.status.body)
 * [Booking Methods (Booking Types)](#bookingMethods)
 * [Коды ошибок](#errorCodes)
 * [Examples](#examples)
 
 
 
-
+<a name="overall"></a>
 ##Общее описание
  Метод для бронирования номеров в отеле.
  Бронирование может быть произведено в один запрос (за исключением случаев, где должна производится онлайн оплата).
@@ -167,7 +168,7 @@ State Status                                        | Description
 `"error"`<a name="status.error"></a>                | ошибка уровня приложения. в таких случаях лучше попробовать позже или известить мейнтейнера
 `"ok"`<a name="status.ok"></a>                      | все хорошо. к состоянию пришли успешно
 
-<a name="response.status.body></a>
+<a name="response.status.body"></a>
 ##### Response Status Body
  Поле [`statusBody`](#fStatusBody) в ответе предназначено для дополнительной информации о бронировании на определенных стадиях или состояниях.
 В случае с статусами ([status](#response.status)) отличными от [`ok`](#status.ok) обычно отдаются причины ошибок, поля с ошибками или пустое поле.
