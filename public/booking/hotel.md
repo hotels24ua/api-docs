@@ -219,11 +219,11 @@ Field               |   Description
 Здесь в ответе от сервера будет указана [стадия](#fState) со статусом ([`status`](#fStatus)) равным [`"requirements"`](#status.requirements).
 К примеру, все стадии по бронированию (условия и реквизиты) были пройдены, но для завершения требуется произвести оплату.
 
-В этом случае [`state.type`](#fState) будет равен [`"payment"`](#state.payment) и в теле поля [`booking`](#fBooking) будет присутствовать секция `paymentMethods` со списком возможных способов оплаты ([PaymentResource][#payment.resources]).
+В этом случае [`state.type`](#fState) будет равен [`"payment"`](#state.payment) и в теле поля [`booking`](#fBooking) будет присутствовать секция `paymentMethods` со списком возможных способов оплаты -  [PaymentResource][#payment.resources].
 В каждом из способов оплаты, помимо [типа](#pType) есть идентификатор (`paymentId`)[#paymentId].
 Тоесть ваше приложение выбирает из списка какие типы оплат оно поддерживает, дает (или не дает) клиенту выбор из этих типов оплат. Производит оплату, а затем делает повторный запрос с параметрами
 * [`continue`](#fContinue): true
-* [`paymentId`](#fPaymentId): <paymentId> id типа оплаты, которая была произведена
+* [`paymentId`](#fPaymentId): <paymentId> id типа оплаты, которая была произведена (не обязательно)
 * [`requestId`](#rsfRequestId): <requestId> id нашего процесса бронирования
 
 
