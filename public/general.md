@@ -18,7 +18,8 @@ api.hotels24.ua - the service provides HTTP interface to access hotels24.ua proj
 ###JSON Response
 #####Examples:
 ```JSON
-{}```
+{}
+```
 ######Example1 (Simple Ok)
 ```JSON
 {
