@@ -31,7 +31,7 @@ api.hotels24.ua - the service provides HTTP interface to access hotels24.ua proj
 {
   "ok":0,
   "data":null,
-  "msg":"Underflow Exception Message"
+  "msg":"Underflow Exception Message",
   "code":500
 }
 ```
