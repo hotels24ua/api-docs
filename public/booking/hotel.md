@@ -1,3 +1,9 @@
+```JSON
+{
+   "rel":"/booking/hotel",
+   "method":"post"
+}
+```
 ```
 [POST] /booking/hotel
 ```
