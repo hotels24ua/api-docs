@@ -1,7 +1,9 @@
 ```JSON
 {
    "rel":"/booking/hotel",
-   "method":"post"
+   "method":"post",
+   "author":"lazycommit@hotels24.ua",
+   "version":"1.0.1-rc"
 }
 ```
 ```
