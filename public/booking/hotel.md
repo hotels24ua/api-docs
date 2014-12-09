@@ -1,6 +1,9 @@
 ```JSON
 {
-   "rel":"/booking/hotel",
+   "company":"hotels24.ua",
+   "project":"api-docs",
+   "package":"public api",
+   "uri":"/booking/hotel",
    "method":"post",
    "author":"lazycommit@hotels24.ua",
    "version":"1.0.1-rc"
