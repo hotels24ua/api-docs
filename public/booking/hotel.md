@@ -184,7 +184,7 @@ State Status                                        | Description
  Поле [`statusBody`](#fStatusBody) в ответе предназначено для дополнительной информации о бронировании на определенных стадиях или состояниях.
 В случае с статусами ([status](#response.status)) отличными от [`ok`](#status.ok) обычно отдаются причины ошибок, поля с ошибками или пустое поле.
 В случае со стадией [`complete`](#state.complete) и статусом [`ok`](#status.ok) - будет передана дополнительная информация о бронировании от провайдера (сервиса, который занимается непосредственно бронированием).
-###### CRM PROVIDER BOOKING STATUS BODY
+###### CRM PROVIDER BOOKING STATUS BODY (`{"state":"complete","status":"ok"}`)
 Field               |   Description
 ---                 |   ---
 `callStatus`        | состояние обращения (`open`, `closed`, `inProgress`, `none`, `new`)     
