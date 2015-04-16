@@ -255,7 +255,7 @@ Field               |   Description
 
 
 ##### Коды ошибок (Error Codes)
-<a name="errorCodes"><a>
+<a name="errorCodes"></a>
 
 Code    | Constant Name                         | Description
  ---    | ---                                   | ---
