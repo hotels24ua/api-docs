@@ -6,7 +6,7 @@
    "uri":"/booking/hotel",
    "method":"post",
    "author":"lazycommit@hotels24.ua",
-   "version":"1.0.1-rc"
+   "version":"1.0.1"
 }
 ```
 ```
